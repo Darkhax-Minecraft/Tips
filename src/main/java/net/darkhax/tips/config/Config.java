@@ -27,7 +27,7 @@ public class Config {
         yOffset = config.getInt("yOffset", "general", 40, 0, Integer.MAX_VALUE, "The amount of offset the tip text should have from the bottom of the screen.");
         titleColor = readColor("titleColor", "FFFF55", "The color of the top/title text for the tip.");
         textColor = readColor("textColor", "FFFFFF", "The color of the actual tip text.");
-        allowDefaultTips = config.getBoolean("allowDefaultTips", "general", true, "Determines whether or not the default tips should be possible.");
+        allowDefaultTips = config.getBoolean("allowDefaultTips", "general", true, "Determines whether or not the default tips should be possible. This includes tips added directly by other mods through their language files.");
         tips = config.getStringList("customTips", "general", new String[0], "A list of custom tips added by the user or modpack.");
         
         if (config.hasChanged()) {
