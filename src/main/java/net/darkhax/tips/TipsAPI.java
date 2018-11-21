@@ -8,6 +8,7 @@ import java.util.function.Consumer;
 import net.darkhax.tips.config.Config;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
+import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.util.text.TextFormatting;
@@ -119,9 +120,10 @@ public class TipsAPI {
         
         final FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
         final ScaledResolution resolution = new ScaledResolution(Minecraft.getMinecraft());
+        final int x = Config.xOffset * resolution.getScaleFactor();
         
         String[] tip = currentTip.split("#SPLIT#");
-        fontRenderer.drawString(TextFormatting.BOLD.toString() + (tip.length == 2 ? tip[1] : I18n.format("tips.gui.title")), Config.xOffset, resolution.getScaledHeight() - Config.yOffset, Config.titleColor);
-        fontRenderer.drawSplitString(tip[0], Config.xOffset, resolution.getScaledHeight() - Config.yOffset + fontRenderer.FONT_HEIGHT, resolution.getScaledWidth() / 2, Config.textColor);
+        fontRenderer.drawString(TextFormatting.BOLD.toString() + (tip.length == 2 ? tip[1] : I18n.format("tips.gui.title")), x, resolution.getScaledHeight() - Config.yOffset, Config.titleColor);
+        fontRenderer.drawSplitString(tip[0], x, resolution.getScaledHeight() - Config.yOffset + fontRenderer.FONT_HEIGHT, resolution.getScaledWidth() / 2, Config.textColor);
     }
 }
