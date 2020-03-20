@@ -106,7 +106,7 @@ public class TipsMod {
         
         for (String configTip : Config.tips) {
             
-            tips.add(configTip);
+            tips.add(I18n.format(configTip));
         }
     }
 }
