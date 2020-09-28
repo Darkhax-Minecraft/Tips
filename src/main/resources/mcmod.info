@@ -1,9 +1,0 @@
-[{
-	"modid": "tips",
-	"name": "Tips",
-	"description": "Adds information tips to loading screens.",
-	"version": "${version}",
-	"mcversion": "${mcversion}",
-	"authorList": ["Darkhax"],
-	"credits": "Thanks to deflatedpickle who authored the JustTheTips mod, which partially inspired this mod."
-}]

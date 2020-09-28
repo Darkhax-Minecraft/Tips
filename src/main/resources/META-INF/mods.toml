@@ -1,0 +1,37 @@
+modLoader="javafml"
+loaderVersion="[34,)"
+issueTrackerURL="https://github.com/Darkhax-Minecraft/Tips/issues"
+license="LGPL v2.1"
+
+[[mods]]
+modId="tips"
+updateJSONURL="https://updates.blamejared.com/get?n=tips&gv=1.16.3"
+version="${version}"
+displayName="${mod_name}"
+displayURL="${mod_download}"
+credits="${mod_credits}"
+authors="${mod_authors}"
+description='''
+${mod_description}
+'''
+
+[[dependencies.tips]]
+    modId="forge"
+    mandatory=true
+    versionRange="[34,)"
+    ordering="NONE"
+    side="CLIENT"
+
+[[dependencies.tips]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.3]"
+    ordering="NONE"
+    side="CLIENT"
+	
+[[dependencies.tips]]
+    modId="bookshelf"
+    mandatory=true
+    versionRange="[8.4.12,)"
+    ordering="AFTER"
+    side="CLIENT"

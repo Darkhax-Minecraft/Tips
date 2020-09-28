@@ -1,129 +1,86 @@
 package net.darkhax.tips;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.function.Consumer;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
-import net.darkhax.tips.config.Config;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.FontRenderer;
-import net.minecraft.client.gui.GuiScreen;
-import net.minecraft.client.gui.ScaledResolution;
-import net.minecraft.client.resources.I18n;
-import net.minecraft.util.text.TextFormatting;
+import javax.annotation.Nullable;
 
-public class TipsAPI {
+import com.google.common.collect.ImmutableMap;
+
+import net.darkhax.tips.data.tip.ITip;
+import net.darkhax.tips.data.tip.ITipSerializer;
+import net.minecraft.util.ResourceLocation;
+
+/**
+ * The API for interacting with tips from other mods. Obtainable through {@link Tips#API}.
+ */
+public final class TipsAPI {
     
     /**
-     * A list of all tip adders. A string list consumer is used because the tip list can be
-     * loaded and built many times.
+     * A registry of tip serializers.
      */
-    private static final List<Consumer<List<String>>> tipAdders = new ArrayList<>();
+    private final Map<ResourceLocation, ITipSerializer<?>> tipSerializers = new HashMap<>();
     
     /**
-     * A list of all tip removers. These are invoked after all the tip adders have been invoked
-     * and the initial tip list has been constructed.
+     * Registers a new type of tip serializer.
      * 
-     * Java Tip: If you want to remove entries while looping over the list you should use an
-     * iterator to remove the tips to avoid concurrent modification exceptions!
+     * @param id The ID for the tip serializer.
+     * @param serializer The tip serializer.
      */
-    private static final List<Consumer<List<String>>> tipRemovers = new ArrayList<>();
-    
-    /**
-     * An internal constant source of random. This is used internally to randomly select the
-     * tip to display.
-     */
-    private static final Random RANDOM = new Random();
-    
-    /**
-     * The list of currently loaded tips. This list is rebuilt occasionally using
-     * {@link #reloadTips()}.
-     */
-    private static List<String> loadedtips = new ArrayList<>();
-    
-    /**
-     * The current tip that should be displayed. This is determined by {@link #getRandomTip()}.
-     */
-    private static String currentTip;
-    
-    /**
-     * Adds a tip adder to the list of all tip adder. Tips can be reloaded, which is why a
-     * string list consumer is required.
-     * 
-     * @param adder A functional interface which accepts and modifies the tip list.
-     * @return Whether or not it was added successfully.
-     */
-    public static boolean addTips (Consumer<List<String>> adder) {
+    public void registerTipSerializer (ResourceLocation id, ITipSerializer<?> serializer) {
         
-        return tipAdders.add(adder);
+        this.tipSerializers.put(id, serializer);
     }
     
     /**
-     * Adds a tip remover to the list of all tip removers. Tips can be reloaded, which is why a
-     * string list consumer is required. Tip removers are applied after the initial tip list
-     * has been created and allows for tips to be removed.
+     * Gets a tip serializer by it's ID.
      * 
-     * @param remover A functional interface which accepts and modifies the tip list.
-     * @return Whether or not it was added successfully.
+     * @param id The ID of the serializer.
+     * @return The tip serializer or null if none were found.
      */
-    public static boolean removetips (Consumer<List<String>> remover) {
+    @Nullable
+    public ITipSerializer<?> getTipSerializer (ResourceLocation id) {
         
-        return tipRemovers.add(remover);
+        return this.tipSerializers.get(id);
     }
     
     /**
-     * Generates a new random tip from {@link #loadedtips}. This will also set the value of
-     * {@link #currentTip} which is used to render the tips on loading screens.
+     * A map of currently loaded tips.
+     */
+    private Map<ResourceLocation, ITip> tips = new HashMap<>();
+    
+    /**
+     * Gets a tip by it's ID.
      * 
-     * @return A random tip from the loaded tips list. If there are no tips you will get an
-     *         error tip.
+     * @param id The ID of the tip to get.
+     * @return The tip that was found, or null if it does not exist.
      */
-    public static String getRandomTip () {
+    @Nullable
+    public ITip getTip (ResourceLocation id) {
         
-        currentTip = loadedtips.isEmpty() ? TextFormatting.RED + I18n.format("tips.gui.error") : loadedtips.get(RANDOM.nextInt(loadedtips.size()));
-        return currentTip;
+        return this.tips.get(id);
     }
     
     /**
-     * Clears out the list of loaded tips and rebuilds it using the registered tip adders and
-     * removers. Reloads can happen in many situations such as texture pack change, config
-     * change, resource reload, and so on.
+     * Gets a random tip from the currently loaded tips.
+     * 
+     * @return A random tip.
      */
-    public static void reloadTips () {
+    @Nullable
+    public ITip getRandomTip () {
         
-        final long startTime = System.currentTimeMillis();
-        
-        loadedtips.clear();
-        
-        // Populate the tip list using the registered tip adders.
-        for (Consumer<List<String>> adder : tipAdders) {
-            
-            adder.accept(loadedtips);
-        }
-        
-        // Remove undesired tips using registered tip removers.
-        for (Consumer<List<String>> remover : tipRemovers) {
-            
-            remover.accept(loadedtips);
-        }
-        
-        TipsMod.LOG.info("Tips have been reloaded. Loaded {} tips. Took {}ms.", loadedtips.size(), System.currentTimeMillis() - startTime);
+        final Collection<ITip> tipPool = this.tips.values();
+        return tipPool.stream().skip((int) (tipPool.size() * Math.random())).findFirst().orElse(null);
     }
     
     /**
-     * Contains the code to render a tip on the screen. Positions and color are taken from the
-     * configuration file. The tip rendered is taken from {@link #currentTip}. This method can
-     * also be used by mods to add tips to their own GUIs.
+     * Replaces the map of currently available tips.
+     * 
+     * @param tips The new tips to display.
      */
-    public static void renderTip () {
+    public void updateTips (Map<ResourceLocation, ITip> tips) {
         
-        final FontRenderer fontRenderer = Minecraft.getMinecraft().fontRenderer;
-        final ScaledResolution resolution = new ScaledResolution(Minecraft.getMinecraft());
-        final int x = Config.xOffset * resolution.getScaleFactor();
-        
-        String[] tip = currentTip.split("#SPLIT#");
-        fontRenderer.drawString(TextFormatting.BOLD.toString() + (tip.length == 2 ? tip[1] : I18n.format("tips.gui.title")), x, resolution.getScaledHeight() - Config.yOffset, Config.titleColor);
-        fontRenderer.drawSplitString(tip[0], x, resolution.getScaledHeight() - Config.yOffset + fontRenderer.FONT_HEIGHT, resolution.getScaledWidth() / 2, Config.textColor);
+        this.tips = ImmutableMap.copyOf(tips);
     }
 }
