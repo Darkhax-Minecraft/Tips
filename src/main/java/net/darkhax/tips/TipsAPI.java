@@ -10,6 +10,7 @@ import com.google.common.collect.ImmutableMap;
 
 import net.darkhax.tips.data.tip.ITip;
 import net.darkhax.tips.data.tip.ITipSerializer;
+import net.darkhax.tips.data.tip.SimpleTip;
 import net.minecraft.util.ResourceLocation;
 
 /**
@@ -71,7 +72,7 @@ public final class TipsAPI {
     public ITip getRandomTip () {
         
         final Collection<ITip> tipPool = this.tips.values();
-        return tipPool.stream().skip((int) (tipPool.size() * Math.random())).findFirst().orElse(null);
+        return tipPool.isEmpty() ? SimpleTip.NO_TIPS : tipPool.stream().skip((int) (tipPool.size() * Math.random())).findFirst().orElse(null);
     }
     
     /**

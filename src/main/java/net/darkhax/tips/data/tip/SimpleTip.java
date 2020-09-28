@@ -15,6 +15,11 @@ import net.minecraft.util.text.TranslationTextComponent;
 public class SimpleTip implements ITip {
     
     /**
+     * The default tip tile, used when no title is defined.
+     */
+    private static final ITextComponent DEFAULT_TITLE = new TranslationTextComponent("tips.title.tip").mergeStyle(TextFormatting.BOLD, TextFormatting.UNDERLINE, TextFormatting.YELLOW);
+    
+    /**
      * The serializer ID for this type of tip.
      */
     public static final ResourceLocation TYPE_ID = new ResourceLocation("tips", "simple_tip");
@@ -23,6 +28,8 @@ public class SimpleTip implements ITip {
      * The serializer for this type of tip.
      */
     public static final ITipSerializer<?> SERIALIZER = new Serializer();
+    
+    public static final SimpleTip NO_TIPS = new SimpleTip(DEFAULT_TITLE, new TranslationTextComponent("tips.tip.no_tips").mergeStyle(TextFormatting.RED));
     
     /**
      * The title text to display.
@@ -56,11 +63,6 @@ public class SimpleTip implements ITip {
      * The serializer for SimpleTip.
      */
     static final class Serializer implements ITipSerializer<SimpleTip> {
-        
-        /**
-         * The default tip tile, used when no title is defined.
-         */
-        private static final ITextComponent DEFAULT_TITLE = new TranslationTextComponent("tips.title.tip").mergeStyle(TextFormatting.BOLD, TextFormatting.UNDERLINE, TextFormatting.YELLOW);
         
         @Override
         public SimpleTip read (JsonObject json) {

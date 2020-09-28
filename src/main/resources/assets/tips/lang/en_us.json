@@ -1,6 +1,7 @@
 {
   "tips.title.tip": "Tip",
   
+  "tips.tip.no_tips": "No tips have been loaded. Please review the configurations.",
   "tips.tip.undead_damage": "Undead mobs like Skeletons are damaged by health potions and healed by damage potions.",
   "tips.tip.poison_immune": "Zombies, Skeletons, and Spiders are all immune to poison damage.",
   "tips.tip.witch_conversion": "Villagers will become witches if they get struck by lightning",
