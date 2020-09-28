@@ -28,7 +28,7 @@ public class Tips {
         
         if (FMLEnvironment.dist.isClient()) {
             
-            this.initClient();
+            Tips.initClient();
         }
     }
     

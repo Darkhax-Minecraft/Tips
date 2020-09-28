@@ -30,25 +30,25 @@ public class Configuration {
         final ForgeConfigSpec.Builder builder = new ForgeConfigSpec.Builder();
         
         builder.comment("The amount of time to wait before cycling the displayed tip. This is in miliseconds. 1000ms = 1s");
-        cycleTime = builder.define("cycleTime", 5 * 1000);
+        this.cycleTime = builder.define("cycleTime", 5 * 1000);
         
         builder.comment("A list of tip IDs to remove from the list. Restart is required for changes to take effect.");
-        removedTips = builder.defineList("removedTips", new ArrayList<String>(), s -> ResourceLocation.isResouceNameValid((String) s));
+        this.removedTips = builder.defineList("removedTips", new ArrayList<String>(), s -> ResourceLocation.isResouceNameValid((String) s));
         
         builder.comment("A list of tip namespaces to remove from the list. Restart is requird for changes to take effect.");
-        removedNamespaces = builder.defineList("removedNamespaces", new ArrayList<String>(), s -> ResourceLocation.isResouceNameValid((String) s));
+        this.removedNamespaces = builder.defineList("removedNamespaces", new ArrayList<String>(), s -> ResourceLocation.isResouceNameValid((String) s));
         
         this.spec = builder.build();
         
         this.save();
     }
     
-    public int getCycleTime() {
+    public int getCycleTime () {
         
         return this.cycleTime.get();
     }
     
-    public boolean canLoadTip(ResourceLocation tipId) {
+    public boolean canLoadTip (ResourceLocation tipId) {
         
         return !this.removedNamespaces.get().contains(tipId.getNamespace()) && !this.removedTips.get().contains(tipId.toString());
     }

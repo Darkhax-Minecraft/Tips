@@ -42,7 +42,7 @@ public class TipReloadListener extends ReloadListener<Map<ResourceLocation, ITip
             
             final String path = candidate.getPath();
             final ResourceLocation entryId = new ResourceLocation(candidate.getNamespace(), path.substring("tips/".length(), path.length() - ".json".length()));
-           
+            
             if (!Tips.config.canLoadTip(entryId)) {
                 
                 Tips.LOG.debug("Skipping tip {} from {}. It was blocked by the config.", entryId, candidate);

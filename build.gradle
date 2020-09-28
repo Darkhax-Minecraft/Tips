@@ -78,7 +78,7 @@ minecraft {
 }
 
 repositories {
-	
+    
     maven {
 
         name = "MMD (Bookshelf)"
@@ -89,7 +89,7 @@ repositories {
 dependencies {
 
     minecraft "net.minecraftforge:forge:${forge_version}"
-	compile fg.deobf("net.darkhax.bookshelf:Bookshelf-1.16.3:${bookshelf_version}")
+    compile fg.deobf("net.darkhax.bookshelf:Bookshelf-1.16.3:${bookshelf_version}")
 }
 
 dependencies {
