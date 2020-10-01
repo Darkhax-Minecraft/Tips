@@ -1,5 +1,6 @@
 package net.darkhax.tips;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -9,12 +10,13 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.fml.ExtensionPoint;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.loading.FMLEnvironment;
+import net.minecraftforge.fml.network.FMLNetworkConstants;
 
 @Mod(Tips.MOD_ID)
-@EventBusSubscriber(modid = Tips.MOD_ID, value = Dist.CLIENT)
 public class Tips {
     
     public static final String MOD_ID = "tips";
@@ -25,7 +27,7 @@ public class Tips {
     public static Configuration config;
     
     public Tips() {
-        
+        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
         if (FMLEnvironment.dist.isClient()) {
             
             Tips.initClient();
