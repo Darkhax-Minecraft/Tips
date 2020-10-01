@@ -5,6 +5,7 @@ import net.darkhax.tips.data.tip.ITip;
 import net.minecraft.client.gui.screen.ConnectingScreen;
 import net.minecraft.client.gui.screen.DirtMessageScreen;
 import net.minecraft.client.gui.screen.DisconnectedScreen;
+import net.minecraft.client.gui.screen.IngameMenuScreen;
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.gui.screen.WorkingScreen;
 import net.minecraft.client.gui.screen.WorldLoadProgressScreen;
@@ -25,7 +26,7 @@ public class TipRenderHandler {
         
         final Screen screen = event.getGui();
         
-        if (screen instanceof DirtMessageScreen || screen instanceof ConnectingScreen || screen instanceof DisconnectedScreen || screen instanceof WorldLoadProgressScreen || screen instanceof WorkingScreen) {
+        if (screen instanceof DirtMessageScreen || screen instanceof ConnectingScreen || screen instanceof DisconnectedScreen || screen instanceof WorldLoadProgressScreen || screen instanceof WorkingScreen || screen instanceof IngameMenuScreen) {
             
             final long currentTime = System.currentTimeMillis();
             
