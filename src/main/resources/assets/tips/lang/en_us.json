@@ -29,5 +29,10 @@
   "tips.tip.note_block_instrument": "The instrument of a Note Block is determined by the block underneath it.",
   "tips.tip.zombie_armor": "Zombies have two base points of armor, even when they are not wearing any.",
   "tips.tip.undead_helmet": "Undead mobs will not burn in daylight if they are wearing a helmet.",
-  "tips.tip.iron_golem_heal": "Iron Golems can be healed by giving them iron ingots."
+  "tips.tip.iron_golem_heal": "Iron Golems can be healed by giving them iron ingots.",
+
+  "tips.tip.turtle_shell":"Turtles don't drop their shell when they Die, but only when their babies grow adult.",
+  "tips.tip.animal_growing":"You can boost the growth of baby animals by feeding them.",
+  "tips.tip.blaze_snowball":"Blazes are the only Monster getting damage trough snowballs",
+  "tips.tip.biome_bonemeal":"Using bonemeal on grass blocks, gives you different flowers depending on the biome you're in"
 }
