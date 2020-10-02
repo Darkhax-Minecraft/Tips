@@ -4,7 +4,7 @@
   "tips.tip.no_tips": "No tips have been loaded. Please review the configurations.",
   "tips.tip.undead_damage": "Undead mobs like Skeletons are damaged by health potions and healed by damage potions.",
   "tips.tip.poison_immune": "Zombies, Skeletons, and Spiders are all immune to poison damage.",
-  "tips.tip.witch_conversion": "Villagers will become witches if they get struck by lightning",
+  "tips.tip.witch_conversion": "Villagers will become witches if they get struck by lightning.",
   "tips.tip.four_eggs": "Hatching chicken eggs can spawn four chickens on very rare occasions.",
   "tips.tip.nether_lava": "Lava will spread faster in the nether.",
   "tips.tip.east": "The Sun, Moon, and Stars all move towards the east.",
@@ -12,7 +12,7 @@
   "tips.tip.deflect_ghast_fireballs": "You can deflect Ghast Fireballs by attacking them.",
   "tips.tip.shulker_armor": "Shulkers take significantly more damage when their shells are open.",
   "tips.tip.arthropods": "Spiders, Silverfish, Bees, and Endermites all take damage from Bane of Arthropods.",
-  "tips.tip.fossils": "Large fossils are burried under swamps and desserts",
+  "tips.tip.fossils": "Large fossils are buried under swamps and desserts.",
   "tips.tip.crouch_blocks": "Sneaking/Crouching will prevent you from falling off the side of blocks.",
   "tips.tip.smoke_bees": "Placing a Campfire beneath a Bee Nest will make those Bees passive.",
   "tips.tip.lava_fuel": "Lava Buckets can be used as fuel in the Furnace.",
@@ -30,8 +30,10 @@
   "tips.tip.zombie_armor": "Zombies have two base points of armor, even when they are not wearing any.",
   "tips.tip.undead_helmet": "Undead mobs will not burn in daylight if they are wearing a helmet.",
   "tips.tip.iron_golem_heal": "Iron Golems can be healed by giving them iron ingots.",
-  "tips.tip.turtle_shell":"Turtles don't drop their shell when they Die, but only when their babies grow adult.",
+  "tips.tip.turtle_shell":"Turtles don't drop their shell when they die, but only when their babies grow adult.",
   "tips.tip.animal_growing":"You can boost the growth of baby animals by feeding them.",
-  "tips.tip.blaze_snowball":"Blazes are the only Monster getting damage trough snowballs",
-  "tips.tip.biome_bonemeal":"Using bonemeal on grass blocks, gives you different flowers depending on the biome you're in"
+  "tips.tip.blaze_snowball":"Blazes are the only hostile mobs who take damage from snowballs.",
+  "tips.tip.biome_bonemeal":"Using bone meal on grass blocks, gives you different flowers depending on the biome you're in.",
+  "tips.tip.biome_fishing":"Fishing in a Jungle can give you different items compared to fishing in other biomes.",
+  "tips.tip.fishing_resources":"Fishing is a great way to get high level enchanted books."
 }
