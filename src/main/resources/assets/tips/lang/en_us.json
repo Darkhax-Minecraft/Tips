@@ -32,6 +32,6 @@
   "tips.tip.iron_golem_heal": "Iron Golems can be healed by giving them iron ingots.",
   "tips.tip.turtle_shell":"Turtles don't drop their shell when they die, but only when their babies grow adult.",
   "tips.tip.animal_growing":"You can boost the growth of baby animals by feeding them.",
-  "tips.tip.blaze_snowball":"Blazes are the only Monster getting damage trough snowballs.",
+  "tips.tip.blaze_snowball":"Blazes are the only hostile mobs who take damage from snowballs.",
   "tips.tip.biome_bonemeal":"Using bone meal on grass blocks, gives you different flowers depending on the biome you're in."
 }
