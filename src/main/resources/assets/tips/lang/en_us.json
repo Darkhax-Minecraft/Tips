@@ -12,7 +12,7 @@
   "tips.tip.deflect_ghast_fireballs": "You can deflect Ghast Fireballs by attacking them.",
   "tips.tip.shulker_armor": "Shulkers take significantly more damage when their shells are open.",
   "tips.tip.arthropods": "Spiders, Silverfish, Bees, and Endermites all take damage from Bane of Arthropods.",
-  "tips.tip.fossils": "Large fossils are burried under swamps and desserts.",
+  "tips.tip.fossils": "Large fossils are buried under swamps and desserts.",
   "tips.tip.crouch_blocks": "Sneaking/Crouching will prevent you from falling off the side of blocks.",
   "tips.tip.smoke_bees": "Placing a Campfire beneath a Bee Nest will make those Bees passive.",
   "tips.tip.lava_fuel": "Lava Buckets can be used as fuel in the Furnace.",
@@ -30,8 +30,8 @@
   "tips.tip.zombie_armor": "Zombies have two base points of armor, even when they are not wearing any.",
   "tips.tip.undead_helmet": "Undead mobs will not burn in daylight if they are wearing a helmet.",
   "tips.tip.iron_golem_heal": "Iron Golems can be healed by giving them iron ingots.",
-  "tips.tip.turtle_shell":"Turtles don't drop their shell when they Die, but only when their babies grow adult.",
+  "tips.tip.turtle_shell":"Turtles don't drop their shell when they die, but only when their babies grow adult.",
   "tips.tip.animal_growing":"You can boost the growth of baby animals by feeding them.",
   "tips.tip.blaze_snowball":"Blazes are the only Monster getting damage trough snowballs.",
-  "tips.tip.biome_bonemeal":"Using bonemeal on grass blocks, gives you different flowers depending on the biome you're in."
+  "tips.tip.biome_bonemeal":"Using bone meal on grass blocks, gives you different flowers depending on the biome you're in."
 }
