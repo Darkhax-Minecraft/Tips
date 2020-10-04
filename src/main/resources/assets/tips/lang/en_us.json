@@ -35,5 +35,6 @@
   "tips.tip.blaze_snowball":"Blazes are the only hostile mobs who take damage from snowballs.",
   "tips.tip.biome_bonemeal":"Using bone meal on grass blocks, gives you different flowers depending on the biome you're in.",
   "tips.tip.biome_fishing":"Fishing in a Jungle can give you different items compared to fishing in other biomes.",
-  "tips.tip.fishing_resources":"Fishing is a great way to get high level enchanted books."
+  "tips.tip.fishing_resources":"Fishing is a great way to get high level enchanted books.",
+  "tips.tip.boat_jump": "By placing a boat in lava you can make a temporary platform."
 }
