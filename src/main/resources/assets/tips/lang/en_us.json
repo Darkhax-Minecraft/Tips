@@ -39,5 +39,6 @@
   "tips.tip.boat_jump": "By placing a boat in lava you can make a temporary platform.",
   "tips.tip.creeper_cat": "Creepers are afraid of cats and will run away from them.",
   "tips.tip.water_grass": "Water is a great way to quickly break grass patches and get seeds.",
-  "tips.tip.gravity_torch": "If you quickly put a torch under blocks affected by gravity, they will break in chain"
+  "tips.tip.gravity_torch": "If you quickly put a torch under blocks affected by gravity, they will break in chain",
+  "tips.tip.fortress_triangulation": "You can use basic triangulation to better find Strongholds. Fire Eyes of Ender from two different locations, and find the spot where the two lines intersect. Even speedrunners use this tactic!"
 }
