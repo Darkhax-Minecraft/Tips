@@ -44,5 +44,6 @@
   "tips.tip.barrel": "Barrels are more efficient than chests; they don't require a block overhead and can be put together infinitely.",
   "tips.tip.job_site_dimension": "Villagers lose their job site when changing dimensions.",
   "tips.tip.villager_sweat": "Villagers sweat when trying to trade with them during a raid.",
-  "tips.tip.wandering_invis": "Wandering traders drink invisibility potions at night."
+  "tips.tip.wandering_invis": "Wandering traders drink invisibility potions at night.",
+  "tips.tip.baby_panda_slimeball": "Baby Pandas have a 0.1% chance to drop a slimeball after they sneeze."
 }
