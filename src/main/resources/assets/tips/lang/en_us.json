@@ -47,5 +47,6 @@
   "tips.tip.wandering_invis": "Wandering traders drink invisibility potions at night.",
   "tips.tip.baby_panda_slimeball": "Baby Pandas have a 0.1% chance to drop a slimeball after they sneeze.",
   "tips.tip.fortress_triangulation": "You can use basic triangulation to better find Strongholds. Fire Eyes of Ender from two different locations, and find the spot where the two lines intersect. Even speedrunners use this tactic!",
-  "tips.tip.creeper_drops_disc": "If a Skeleton's or Stray's arrow kills a Creeper, the Creeper drops a random music disc (excluding the nether music disc)."
+  "tips.tip.creeper_drops_disc": "If a Skeleton's or Stray's arrow kills a Creeper, the Creeper drops a random music disc (excluding the nether music disc).",
+  "tips.tip.mooshroom_lightning": "A red mooshroom will become a brown mooshroom, and a brown mooshroom will become a red one, when struck by lightning."
 }
