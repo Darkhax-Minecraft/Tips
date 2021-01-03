@@ -35,6 +35,19 @@
     "tips.tip.blaze_snowball":"Las Blazes son la única mob hostil que sufre daño de las bolas de nieve.",
     "tips.tip.biome_bonemeal":"Utilizar una ensalada de huesos en un bloque de pasto te da distintas flores, dependiendo del bioma en el que estés.",
     "tips.tip.biome_fishing":"Pescar en la Jungla te puede dar distintos items a comparación de pescar en otros biomas.",
-    "tips.tip.fishing_resources":"Pescar es una gran manera de obtener libros encantados de alto nivel."
+    "tips.tip.fishing_resources":"Pescar es una gran manera de obtener libros encantados de alto nivel.",
+    "tips.tip.boat_jump": "Puedes hacer una plataforma temporal colocando un bote en lava.",
+    "tips.tip.creeper_cat": "Los Creepers le temen a los gatos y correrán de ellos.",
+    "tips.tip.water_grass": "Una forma rápida de romper césped y obtener semillas es usando agua.",
+    "tips.tip.gravity_torch": "Si pones una antorcha rápidamente debajo de bloques afectados por la gravedad, se romperán en cadena.",
+    "tips.tip.string_wool": "Puedes usar cuerda en 2x2 para crear lana. No, esto no lo añaden los mods.",
+    "tips.tip.barrel": "Los barriles son más eficientes que los cofres; no necesitan un bloque arriba y se pueden poner juntos infinitamente.",
+    "tips.tip.job_site_dimension": "Los Aldeanos pierden su lugar de trabajo cuando cambian de dimensión.",
+    "tips.tip.villager_sweat": "Los Aldeanos sudan cuando intentas intercambiar con ellos durante un saqueo.",
+    "tips.tip.wandering_invis": "Los Vendedores Ambulantes toman pociones de invisibilidad por las noches.",
+    "tips.tip.baby_panda_slimeball": "Los Pandas Bebé tienen una pobrabilidad de 0.1% de tirar una bola de slime cuando estornudan.",
+    "tips.tip.fortress_triangulation": "Puedes usar triangulación básica pra encontrar Fortalezas. Tira Ojos de Ender desde dos puntos diferentes y encuentra el punto donde ambas líneas se intersectan. ¡Hasta los speedrunners usan esta táctica!",
+    "tips.tip.creeper_drops_disc": "Si un Esqueleto o Esqueleto Glacial mata un Creeper, el Creeper tirará un disco de música al azar (excepto el disco de música del Nether).",
+    "tips.tip.mooshroom_lightning": "Una Champivaca roja se convertirá en una marrón y viceversa si les cae un rayo."
   }
   
