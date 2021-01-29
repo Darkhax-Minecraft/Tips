@@ -23,11 +23,13 @@ public class Tips {
     public static final String MOD_NAME = "Tips";
     public static final Logger LOG = LogManager.getLogger(MOD_NAME);
     
-    public static TipsAPI API = new TipsAPI();
+    public static final TipsAPI API = new TipsAPI();
     public static Configuration config;
     
     public Tips() {
-        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of(() -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+        
+        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of( () -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+        
         if (FMLEnvironment.dist.isClient()) {
             
             Tips.initClient();
