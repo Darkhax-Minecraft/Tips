@@ -13,6 +13,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig.Type;
 import net.minecraftforge.fml.loading.FMLEnvironment;
 import net.minecraftforge.fml.network.FMLNetworkConstants;
 
@@ -24,11 +25,12 @@ public class Tips {
     public static final Logger LOG = LogManager.getLogger(MOD_NAME);
     
     public static final TipsAPI API = new TipsAPI();
-    public static Configuration config;
+    public static final Configuration CFG = new Configuration();
     
     public Tips() {
         
         ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of( () -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
+        ModLoadingContext.get().registerConfig(Type.CLIENT, CFG.getSpec());
         
         if (FMLEnvironment.dist.isClient()) {
             
@@ -39,7 +41,6 @@ public class Tips {
     @OnlyIn(Dist.CLIENT)
     public static void initClient () {
         
-        config = new Configuration();
         API.registerTipSerializer(SimpleTip.TYPE_ID, SimpleTip.SERIALIZER);
         ((IReloadableResourceManager) Minecraft.getInstance().getResourceManager()).addReloadListener(new TipReloadListener());
     }

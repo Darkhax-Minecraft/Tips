@@ -30,7 +30,7 @@ public class TipRenderHandler {
             
             final long currentTime = System.currentTimeMillis();
             
-            if (currentTime - initTime > Tips.config.getCycleTime()) {
+            if (currentTime - initTime > Tips.CFG.getCycleTime()) {
                 
                 tip = Tips.API.getRandomTip();
                 initTime = currentTime;

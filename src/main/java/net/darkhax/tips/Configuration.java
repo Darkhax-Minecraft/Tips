@@ -1,21 +1,11 @@
 package net.darkhax.tips;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
-import com.electronwill.nightconfig.core.CommentedConfig;
-import com.electronwill.nightconfig.core.file.CommentedFileConfig;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.common.ForgeConfigSpec.ConfigValue;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.config.ModConfig.Type;
-import net.minecraftforge.fml.loading.FMLPaths;
 
 public class Configuration {
     
@@ -39,8 +29,11 @@ public class Configuration {
         this.removedNamespaces = builder.defineList("removedNamespaces", new ArrayList<String>(), s -> ResourceLocation.isResouceNameValid((String) s));
         
         this.spec = builder.build();
+    }
+    
+    public ForgeConfigSpec getSpec () {
         
-        this.save();
+        return this.spec;
     }
     
     public int getCycleTime () {
@@ -51,23 +44,5 @@ public class Configuration {
     public boolean canLoadTip (ResourceLocation tipId) {
         
         return !this.removedNamespaces.get().contains(tipId.getNamespace()) && !this.removedTips.get().contains(tipId.toString());
-    }
-    
-    private void save () {
-        
-        final ModConfig modConfig = new ModConfig(Type.CLIENT, this.spec, ModLoadingContext.get().getActiveContainer());
-        final CommentedFileConfig configData = modConfig.getHandler().reader(FMLPaths.CONFIGDIR.relative()).apply(modConfig);
-        final Method setConfigDataMethod = ObfuscationReflectionHelper.findMethod(ModConfig.class, "setConfigData", CommentedConfig.class);
-        
-        try {
-            setConfigDataMethod.invoke(modConfig, configData);
-        }
-        
-        catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
-            Tips.LOG.error("Forge's config code could not be accessed.", e);
-            throw new IllegalStateException(e);
-        }
-        
-        modConfig.save();
     }
 }
