@@ -72,7 +72,7 @@ public final class TipsAPI {
     @Nullable
     public ITip getRandomTip () {
         
-        final Collection<ITip> tipPool = this.tips.entrySet().stream().filter(e -> !Tips.CFG.canLoadTip(e.getKey())).map(e -> e.getValue()).collect(Collectors.toList());
+        final Collection<ITip> tipPool = this.tips.entrySet().stream().filter(e -> Tips.CFG.canLoadTip(e.getKey())).map(e -> e.getValue()).collect(Collectors.toList());
         return tipPool.isEmpty() ? SimpleTip.NO_TIPS : tipPool.stream().skip((int) (tipPool.size() * Math.random())).findFirst().orElse(null);
     }
     
