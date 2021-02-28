@@ -34,6 +34,11 @@ public class TipRenderHandler {
                 
                 tip = Tips.API.getRandomTip();
                 initTime = currentTime;
+                
+                if (tip != null) {
+                    
+                    Tips.LOG.debug("Displaying tip {} on screen {}.", tip.getId(), screen.getClass().getSimpleName());
+                }
             }
             
             if (tip != null) {
