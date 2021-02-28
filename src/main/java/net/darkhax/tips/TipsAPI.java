@@ -13,11 +13,24 @@ import net.darkhax.tips.data.tip.ITip;
 import net.darkhax.tips.data.tip.ITipSerializer;
 import net.darkhax.tips.data.tip.SimpleTip;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 
 /**
  * The API for interacting with tips from other mods. Obtainable through {@link Tips#API}.
  */
 public final class TipsAPI {
+    
+    /**
+     * The default tip tile, used when no title is defined.
+     */
+    public static final ITextComponent DEFAULT_TITLE = new TranslationTextComponent("tips.title.tip").mergeStyle(TextFormatting.BOLD, TextFormatting.UNDERLINE, TextFormatting.YELLOW);
+    
+    /**
+     * A default value used to display an error when no tips are available for display.
+     */
+    public static final SimpleTip NO_TIPS = new SimpleTip(new ResourceLocation("tips", "empty"), DEFAULT_TITLE, new TranslationTextComponent("tips.tip.no_tips").mergeStyle(TextFormatting.RED));
     
     /**
      * A registry of tip serializers.
@@ -73,7 +86,7 @@ public final class TipsAPI {
     public ITip getRandomTip () {
         
         final Collection<ITip> tipPool = this.tips.entrySet().stream().filter(e -> Tips.CFG.canLoadTip(e.getKey())).map(e -> e.getValue()).collect(Collectors.toList());
-        return tipPool.isEmpty() ? SimpleTip.NO_TIPS : tipPool.stream().skip((int) (tipPool.size() * Math.random())).findFirst().orElse(null);
+        return tipPool.isEmpty() ? NO_TIPS : tipPool.stream().skip((int) (tipPool.size() * Math.random())).findFirst().orElse(null);
     }
     
     /**

@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import net.darkhax.tips.TipsAPI;
+import net.minecraft.util.ResourceLocation;
 
 /**
  * A serializer that can read tips to and from json. These can be registered by calling
@@ -20,7 +21,7 @@ public interface ITipSerializer<T extends ITip> {
      * @param json The json tree.
      * @return The tip that was read.
      */
-    T read (JsonObject json);
+    T read (ResourceLocation id, JsonObject json);
     
     /**
      * Writes a tip to a json tree.

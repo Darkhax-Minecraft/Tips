@@ -63,7 +63,7 @@ public class TipReloadListener extends ReloadListener<Map<ResourceLocation, ITip
                             
                             if (serializer != null) {
                                 
-                                final ITip tip = serializer.read(json);
+                                final ITip tip = serializer.read(entryId, json);
                                 
                                 if (tip != null) {
                                     

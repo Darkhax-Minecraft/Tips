@@ -4,20 +4,14 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import net.darkhax.bookshelf.serialization.Serializers;
+import net.darkhax.tips.TipsAPI;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextFormatting;
-import net.minecraft.util.text.TranslationTextComponent;
 
 /**
  * A simple implementation of the tip.
  */
 public class SimpleTip implements ITip {
-    
-    /**
-     * The default tip tile, used when no title is defined.
-     */
-    private static final ITextComponent DEFAULT_TITLE = new TranslationTextComponent("tips.title.tip").mergeStyle(TextFormatting.BOLD, TextFormatting.UNDERLINE, TextFormatting.YELLOW);
     
     /**
      * The serializer ID for this type of tip.
@@ -29,7 +23,10 @@ public class SimpleTip implements ITip {
      */
     public static final ITipSerializer<?> SERIALIZER = new Serializer();
     
-    public static final SimpleTip NO_TIPS = new SimpleTip(DEFAULT_TITLE, new TranslationTextComponent("tips.tip.no_tips").mergeStyle(TextFormatting.RED));
+    /**
+     * The namespaced id of the tip.
+     */
+    private final ResourceLocation id;
     
     /**
      * The title text to display.
@@ -41,10 +38,17 @@ public class SimpleTip implements ITip {
      */
     private final ITextComponent text;
     
-    public SimpleTip(ITextComponent title, ITextComponent text) {
+    public SimpleTip(ResourceLocation id, ITextComponent title, ITextComponent text) {
         
+        this.id = id;
         this.title = title;
         this.text = text;
+    }
+    
+    @Override
+    public ResourceLocation getId () {
+        
+        return this.id;
     }
     
     @Override
@@ -65,11 +69,11 @@ public class SimpleTip implements ITip {
     static final class Serializer implements ITipSerializer<SimpleTip> {
         
         @Override
-        public SimpleTip read (JsonObject json) {
+        public SimpleTip read (ResourceLocation id, JsonObject json) {
             
-            final ITextComponent title = Serializers.TEXT.read(json, "title", DEFAULT_TITLE);
+            final ITextComponent title = Serializers.TEXT.read(json, "title", TipsAPI.DEFAULT_TITLE);
             final ITextComponent text = Serializers.TEXT.read(json, "tip");
-            return new SimpleTip(title, text);
+            return new SimpleTip(id, title, text);
         }
         
         @Override

@@ -1,11 +1,19 @@
 package net.darkhax.tips.data.tip;
 
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 
 /**
  * Defines a tip that is displayed on certain menus.
  */
 public interface ITip {
+    
+    /**
+     * Gets the namespaced identifier for the tip.
+     * 
+     * @return The namespaced identifier for the tip.
+     */
+    ResourceLocation getId ();
     
     /**
      * Gets the title for the tip. This is the part on top of the tip which explains what it
