@@ -98,4 +98,9 @@ public final class TipsAPI {
         
         this.tips = ImmutableMap.copyOf(tips);
     }
+    
+    public Map<ResourceLocation, ITip> getTips () {
+        
+        return this.tips;
+    }
 }

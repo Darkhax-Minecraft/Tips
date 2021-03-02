@@ -46,7 +46,17 @@
   "tips.tip.villager_sweat": "Villagers sweat when trying to trade with them during a raid.",
   "tips.tip.wandering_invis": "Wandering traders drink invisibility potions at night.",
   "tips.tip.baby_panda_slimeball": "Baby Pandas have a 0.1% chance to drop a slimeball after they sneeze.",
-  "tips.tip.fortress_triangulation": "You can use basic triangulation to better find Strongholds. Fire Eyes of Ender from two different locations, and find the spot where the two lines intersect. Even speedrunners use this tactic!",
+  "tips.tip.fortress_triangulation": "You can triangulate stronghold locations by summoning eyes of ender from two different locations and tracking where they intersect.",
   "tips.tip.creeper_drops_disc": "If a Skeleton's or Stray's arrow kills a Creeper, the Creeper drops a random music disc (excluding the nether music disc).",
-  "tips.tip.mooshroom_lightning": "A red mooshroom will become a brown mooshroom, and a brown mooshroom will become a red one, when struck by lightning."
+  "tips.tip.mooshroom_lightning": "A red mooshroom will become a brown mooshroom, and a brown mooshroom will become a red one, when struck by lightning.",
+  
+  "gui.tips.list.title": "Tips List",
+  "gui.tips.list.search": "Search",
+  "gui.tips.list.show_disabled": "Show Disabled",
+  "gui.tips.list.entry.tip_id": "Tip ID: %s",
+  "gui.tips.list.entry.added_by": "Added by: %s",
+  "gui.tips.list.entry.copied": "Copied!",
+  "gui.tips.list.entry.click_to_copy": "Click to copy ID",
+  "gui.tips.list.entry.disabled": "Disabled by config!",
+  "gui.tips.list.config": "Config"
 }

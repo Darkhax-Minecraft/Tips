@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import net.darkhax.tips.data.tip.SimpleTip;
 import net.darkhax.tips.data.tip.TipReloadListener;
+import net.darkhax.tips.gui.TipsListScreen;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.IReloadableResourceManager;
 import net.minecraftforge.api.distmarker.Dist;
@@ -29,11 +30,13 @@ public class Tips {
     
     public Tips() {
         
-        ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of( () -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
-        ModLoadingContext.get().registerConfig(Type.CLIENT, CFG.getSpec());
+        final ModLoadingContext ctx = ModLoadingContext.get();
+        ctx.registerExtensionPoint(ExtensionPoint.DISPLAYTEST, () -> Pair.of( () -> FMLNetworkConstants.IGNORESERVERONLY, (a, b) -> true));
         
         if (FMLEnvironment.dist.isClient()) {
             
+            ctx.registerConfig(Type.CLIENT, CFG.getSpec());
+            ctx.registerExtensionPoint(ExtensionPoint.CONFIGGUIFACTORY, () -> TipsListScreen::factory);
             Tips.initClient();
         }
     }
