@@ -26,7 +26,7 @@ public class TipsList extends AbstractOptionList<ListEntry> {
         searchInput = searchInput.toLowerCase(Locale.ROOT);
         
         this.clearEntries();
-        
+        this.setScrollAmount(0d);
         for (final ITip tip : Tips.API.getTips().values()) {
             
             if ((showDisabled || Tips.CFG.canLoadTip(tip.getId())) && this.matchSearch(tip, searchInput)) {

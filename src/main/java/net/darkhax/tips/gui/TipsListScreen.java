@@ -2,6 +2,7 @@ package net.darkhax.tips.gui;
 
 import java.io.File;
 
+import com.google.common.base.Objects;
 import com.mojang.blaze3d.matrix.MatrixStack;
 
 import net.minecraft.client.GameSettings;
@@ -24,8 +25,9 @@ public class TipsListScreen extends SettingsScreen {
     private CheckboxButton showDisabled;
     private TextFieldWidget searchBar;
     private Button openConfigFile;
+    private String lastSearch;
     
-    public static Screen factory(Minecraft mc, Screen parent) {
+    public static Screen factory (Minecraft mc, Screen parent) {
         
         return new TipsListScreen(parent, mc.gameSettings);
     }
@@ -41,16 +43,22 @@ public class TipsListScreen extends SettingsScreen {
         this.list = new TipsList(this, this.minecraft);
         this.children.add(this.list);
         
-        this.searchBar = new ButtonTextField(this.font, (this.width / 2 - 150 / 2) - 50, this.height - 26, 150, 20, new TranslationTextComponent("gui.tips.list.search"));
+        this.searchBar = new ButtonTextField(this.font, this.width / 2 - 150 / 2 - 50, this.height - 26, 150, 20, new TranslationTextComponent("gui.tips.list.search"));
         this.children.add(this.searchBar);
         
-        this.showDisabled = new ButtonCheckbox((this.width / 2 - 20 / 2) + 50, this.height - 26, 20, 20, new TranslationTextComponent("gui.tips.list.show_disabled"), false, p -> this.list.refreshEntries(p, this.searchBar.getText()));
-        this.addButton(showDisabled);
+        this.showDisabled = new ButtonCheckbox(this.width / 2 - 20 / 2 + 50, this.height - 26, 20, 20, new TranslationTextComponent("gui.tips.list.show_disabled"), false, p -> this.list.refreshEntries(p, this.searchBar.getText()));
+        this.addButton(this.showDisabled);
         
         this.openConfigFile = new Button(this.width - 70, this.height - 26, 60, 20, new TranslationTextComponent("gui.tips.list.config"), this::openConfigFile);
         this.addButton(this.openConfigFile);
         
-        this.searchBar.setResponder(s -> list.refreshEntries(this.showDisabled.isChecked(), s));
+        this.searchBar.setResponder(s -> {
+            
+            if (!Objects.equal(this.lastSearch, s)) {
+                this.list.refreshEntries(this.showDisabled.isChecked(), s);
+                this.lastSearch = s;
+            }
+        });
         
         super.init();
     }
@@ -65,9 +73,9 @@ public class TipsListScreen extends SettingsScreen {
         super.render(matrixStack, mouseX, mouseY, partialTicks);
     }
     
-    private void openConfigFile(Button button) {
+    private void openConfigFile (Button button) {
         
-        File cfgFile = FMLPaths.CONFIGDIR.get().resolve("tips-client.toml").toFile();
+        final File cfgFile = FMLPaths.CONFIGDIR.get().resolve("tips-client.toml").toFile();
         Util.getOSType().openURI(cfgFile.toURI());
     }
 }
