@@ -4,6 +4,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import net.darkhax.bookshelf.serialization.Serializers;
+import net.darkhax.tips.Tips;
 import net.darkhax.tips.TipsAPI;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
@@ -38,11 +39,17 @@ public class SimpleTip implements ITip {
      */
     private final ITextComponent text;
     
-    public SimpleTip(ResourceLocation id, ITextComponent title, ITextComponent text) {
+    /**
+     * Time to keep the tip displayed for.
+     */
+    private final int cycleTime;
+    
+    public SimpleTip(ResourceLocation id, ITextComponent title, ITextComponent text, int cycleTime) {
         
         this.id = id;
         this.title = title;
         this.text = text;
+        this.cycleTime = cycleTime;
     }
     
     @Override
@@ -63,6 +70,12 @@ public class SimpleTip implements ITip {
         return this.text;
     }
     
+    @Override
+    public int getCycleTime () {
+
+        return this.cycleTime < 1 ? Tips.CFG.getCycleTime() : this.cycleTime;
+    }
+    
     /**
      * The serializer for SimpleTip.
      */
@@ -73,7 +86,8 @@ public class SimpleTip implements ITip {
             
             final ITextComponent title = Serializers.TEXT.read(json, "title", TipsAPI.DEFAULT_TITLE);
             final ITextComponent text = Serializers.TEXT.read(json, "tip");
-            return new SimpleTip(id, title, text);
+            final int cycleTime = Serializers.INT.read(json, "cycleTime", -1);
+            return new SimpleTip(id, title, text, cycleTime);
         }
         
         @Override
@@ -81,8 +95,19 @@ public class SimpleTip implements ITip {
             
             final JsonObject json = new JsonObject();
             json.add("type", Serializers.RESOURCE_LOCATION.write(SimpleTip.TYPE_ID));
-            json.add("title", Serializers.TEXT.write(toWrite.title));
+            
+            if (toWrite.title != TipsAPI.DEFAULT_TITLE) {
+                
+                json.add("title", Serializers.TEXT.write(toWrite.title));
+            }
+            
             json.add("tip", Serializers.TEXT.write(toWrite.text));
+            
+            if (toWrite.cycleTime >= 1) {
+                
+                json.addProperty("cycleTime", toWrite.cycleTime);
+            }
+            
             return json;
         }
     }

@@ -64,6 +64,7 @@
   "gui.tips.list.show_disabled": "Show Disabled",
   "gui.tips.list.entry.tip_id": "Tip ID: %s",
   "gui.tips.list.entry.added_by": "Added by: %s",
+  "gui.tips.list.entry.cycle_time": "Cycle Time: %s",
   "gui.tips.list.entry.copied": "Copied!",
   "gui.tips.list.entry.click_to_copy": "Click to copy ID",
   "gui.tips.list.entry.disabled": "Disabled by config!",

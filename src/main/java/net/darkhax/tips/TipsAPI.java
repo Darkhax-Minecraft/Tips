@@ -30,7 +30,7 @@ public final class TipsAPI {
     /**
      * A default value used to display an error when no tips are available for display.
      */
-    public static final SimpleTip NO_TIPS = new SimpleTip(new ResourceLocation("tips", "empty"), DEFAULT_TITLE, new TranslationTextComponent("tips.tip.no_tips").mergeStyle(TextFormatting.RED));
+    public static final SimpleTip NO_TIPS = new SimpleTip(new ResourceLocation("tips", "empty"), DEFAULT_TITLE, new TranslationTextComponent("tips.tip.no_tips").mergeStyle(TextFormatting.RED), -1);
     
     /**
      * A registry of tip serializers.

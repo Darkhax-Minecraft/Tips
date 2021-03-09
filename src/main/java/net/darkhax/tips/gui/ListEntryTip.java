@@ -1,8 +1,11 @@
 package net.darkhax.tips.gui;
 
+import java.awt.TextComponent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import org.apache.http.impl.NoConnectionReuseStrategy;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -14,6 +17,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.util.math.vector.Matrix4f;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.api.distmarker.Dist;
@@ -57,6 +61,8 @@ public class ListEntryTip extends ListEntry {
             tooltip.add(new TranslationTextComponent("gui.tips.list.entry.disabled").mergeStyle(TextFormatting.RED));
         }
         
+        tooltip.add(new TranslationTextComponent("gui.tips.list.entry.cycle_time", ticksToTime((tip.getCycleTime() / 50), false, false)));
+        
         if (this.isSelected) {
             tooltip.add(new TranslationTextComponent("gui.tips.list.entry.copied").mergeStyle(TextFormatting.GREEN));
         }
@@ -91,7 +97,6 @@ public class ListEntryTip extends ListEntry {
             }
         }
         
-        System.out.println("h");
         return modId;
     }
     
@@ -117,5 +122,18 @@ public class ListEntryTip extends ListEntry {
         mStack.pop();
         RenderSystem.enableDepthTest();
         RenderSystem.enableRescaleNormal();
+    }
+    
+    private static ITextComponent ticksToTime (int ticks, boolean prefix, boolean color) {
+        
+        final boolean isPositive = ticks > 0;
+        ticks = Math.abs(ticks);
+        int seconds = ticks / 20;
+        final int minutes = seconds / 60;
+        seconds = seconds % 60;
+        
+        final String result = seconds < 10 ? minutes + ":0" + seconds : minutes + ":" + seconds;        
+        final StringTextComponent component = new StringTextComponent(prefix ? (isPositive ? "+" : "-") + result : result);
+        return color ? (isPositive ? component.mergeStyle(TextFormatting.GREEN) : component.mergeStyle(TextFormatting.RED)) : component;
     }
 }
