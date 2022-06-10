@@ -88,7 +88,7 @@ repositories {
 dependencies {
 
     minecraft "net.minecraftforge:forge:${forge_version}"
-    compile fg.deobf("net.darkhax.bookshelf:Bookshelf-1.16.5:${bookshelf_version}")
+    compile fg.deobf("net.darkhax.bookshelf:Bookshelf-Forge-1.16.5:${bookshelf_version}")
 }
 
 dependencies {
