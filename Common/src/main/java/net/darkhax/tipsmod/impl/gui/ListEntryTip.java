@@ -22,8 +22,6 @@ import net.minecraft.client.gui.narration.NarrationElementOutput;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.network.chat.TranslatableComponent;
 
 public class ListEntryTip extends ListEntry {
 
@@ -52,21 +50,21 @@ public class ListEntryTip extends ListEntry {
     public void renderMouseOver(PoseStack matrix, int mouseX, int mouseY) {
 
         final List<Component> tooltip = new ArrayList<>();
-        tooltip.add(new TranslatableComponent("gui.tips.list.entry.tip_id", this.tip.getId().toString()));
-        tooltip.add(new TranslatableComponent("gui.tips.list.entry.added_by", Services.PLATFORM.getModName(this.tip.getId().getNamespace())).withStyle(ChatFormatting.BLUE));
+        tooltip.add(Component.translatable("gui.tips.list.entry.tip_id", this.tip.getId().toString()));
+        tooltip.add(Component.translatable("gui.tips.list.entry.added_by", Services.PLATFORM.getModName(this.tip.getId().getNamespace())).withStyle(ChatFormatting.BLUE));
 
         if (!TipsAPI.canDisplayTip(this.tip)) {
-            tooltip.add(new TranslatableComponent("gui.tips.list.entry.disabled").withStyle(ChatFormatting.RED));
+            tooltip.add(Component.translatable("gui.tips.list.entry.disabled").withStyle(ChatFormatting.RED));
         }
 
-        tooltip.add(new TranslatableComponent("gui.tips.list.entry.cycle_time", ticksToTime((tip.getCycleTime() / 50), false, false)));
+        tooltip.add(Component.translatable("gui.tips.list.entry.cycle_time", ticksToTime((tip.getCycleTime() / 50), false, false)));
 
         if (this.isSelected) {
-            tooltip.add(new TranslatableComponent("gui.tips.list.entry.copied").withStyle(ChatFormatting.GREEN));
+            tooltip.add(Component.translatable("gui.tips.list.entry.copied").withStyle(ChatFormatting.GREEN));
         }
 
         else {
-            tooltip.add(new TranslatableComponent("gui.tips.list.entry.click_to_copy").withStyle(ChatFormatting.GRAY));
+            tooltip.add(Component.translatable("gui.tips.list.entry.click_to_copy").withStyle(ChatFormatting.GRAY));
         }
 
         this.mc.screen.renderComponentTooltip(matrix, tooltip, mouseX, mouseY);
@@ -157,7 +155,7 @@ public class ListEntryTip extends ListEntry {
         seconds = seconds % 60;
 
         final String result = seconds < 10 ? minutes + ":0" + seconds : minutes + ":" + seconds;
-        final MutableComponent component = new TextComponent(prefix ? (isPositive ? "+" : "-") + result : result);
+        final MutableComponent component = Component.literal(prefix ? (isPositive ? "+" : "-") + result : result);
         return color ? (isPositive ? component.withStyle(ChatFormatting.GREEN) : component.withStyle(ChatFormatting.RED)) : component;
     }
 }

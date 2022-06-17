@@ -2,13 +2,12 @@ package net.darkhax.tipsmod.impl.gui;
 
 import net.minecraft.client.gui.components.Checkbox;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
 
 import java.util.function.Consumer;
 
 public class FunctionalCheckbox extends Checkbox {
     
-    private static final Component EMPTY = new TextComponent("");
+    private static final Component EMPTY = Component.empty();
 
     private final Consumer<Boolean> pressAction;
     

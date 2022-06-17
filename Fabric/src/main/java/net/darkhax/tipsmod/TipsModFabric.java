@@ -7,10 +7,12 @@ import net.darkhax.tipsmod.impl.TipsModCommon;
 import net.darkhax.tipsmod.impl.client.TipRenderHandler;
 import net.darkhax.tipsmod.impl.gui.TipsListScreen;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.command.v1.ClientCommandManager;
-import net.fabricmc.fabric.api.client.command.v1.FabricClientCommandSource;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandManager;
+import net.fabricmc.fabric.api.client.command.v2.ClientCommandRegistrationCallback;
+import net.fabricmc.fabric.api.client.command.v2.FabricClientCommandSource;
 import net.fabricmc.fabric.api.client.screen.v1.ScreenEvents;
 import net.minecraft.client.Minecraft;
+import net.minecraft.commands.CommandBuildContext;
 
 public class TipsModFabric implements ClientModInitializer {
 
@@ -30,10 +32,10 @@ public class TipsModFabric implements ClientModInitializer {
             }
         });
 
-        registerCommands(ClientCommandManager.DISPATCHER);
+        ClientCommandRegistrationCallback.EVENT.register(TipsModFabric::registerCommands);
     }
 
-    private static void registerCommands(CommandDispatcher<FabricClientCommandSource> dispatcher) {
+    private static void registerCommands(CommandDispatcher<FabricClientCommandSource> dispatcher, CommandBuildContext registryAccess) {
 
         final LiteralArgumentBuilder<FabricClientCommandSource> root = ClientCommandManager.literal("tipsmod");
         root.then(ClientCommandManager.literal("listscreen").executes(ctx -> {
