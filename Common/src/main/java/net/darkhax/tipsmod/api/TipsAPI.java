@@ -18,10 +18,12 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class TipsAPI {
 
@@ -43,9 +45,11 @@ public class TipsAPI {
 
     public static ITip getRandomTip() {
 
-        if (!getLoadedTips().isEmpty()) {
+        final List<ITip> displayableTips = getLoadedTips().stream().filter(TipsAPI::canDisplayTip).toList();
 
-            return getLoadedTips().stream().filter(TipsAPI::canDisplayTip).skip(Constants.RANDOM.nextInt(getLoadedTips().size())).findFirst().orElse(EMPTY);
+        if (!displayableTips.isEmpty()) {
+
+            return displayableTips.get(Constants.RANDOM.nextInt(displayableTips.size()));
         }
 
         return EMPTY;
