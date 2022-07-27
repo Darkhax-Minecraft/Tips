@@ -5,6 +5,7 @@ issueTrackerURL = "${mod_issues}"
 
 [[mods]]
 modId = "${mod_id}"
+displayTest="IGNORE_ALL_VERSION"
 updateJSONURL="https://updates.blamejared.com/get?n=${mod_id}&gv=${minecraft_version}"
 version = "${file.jarVersion}"
 displayName = "${mod_name}"
@@ -18,7 +19,7 @@ ${mod_description}
 [[dependencies.${ mod_id }]]
 modId = "forge"
 mandatory = true
-versionRange = "[41,)"
+versionRange = "[41.1.0,)"
 ordering = "NONE"
 side = "CLIENT"
 
@@ -32,6 +33,6 @@ side = "CLIENT"
 [[dependencies.${ mod_id }]]
 modId = "bookshelf"
 mandatory = true
-versionRange = "[14,)"
+versionRange = "[14.2.10,)"
 ordering = "NONE"
 side = "CLIENT"
