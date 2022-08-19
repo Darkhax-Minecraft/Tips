@@ -1,6 +1,5 @@
 package net.darkhax.tipsmod.api;
 
-import com.google.common.collect.ImmutableList;
 import net.darkhax.bookshelf.Constants;
 import net.darkhax.tipsmod.api.resources.ITip;
 import net.darkhax.tipsmod.api.resources.ITipSerializer;
@@ -18,12 +17,10 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class TipsAPI {
 
@@ -45,11 +42,11 @@ public class TipsAPI {
 
     public static ITip getRandomTip() {
 
-        final List<ITip> displayableTips = getLoadedTips().stream().filter(TipsAPI::canDisplayTip).toList();
+        final List<ITip> filteredTips = getLoadedTips().stream().filter(TipsAPI::canDisplayTip).toList();
 
-        if (!displayableTips.isEmpty()) {
+        if (!filteredTips.isEmpty()) {
 
-            return displayableTips.get(Constants.RANDOM.nextInt(displayableTips.size()));
+            return filteredTips.get(Constants.RANDOM.nextInt(filteredTips.size()));
         }
 
         return EMPTY;
