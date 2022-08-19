@@ -15,6 +15,7 @@ import net.minecraft.client.gui.screens.LevelLoadingScreen;
 import net.minecraft.client.gui.screens.PauseScreen;
 import net.minecraft.client.gui.screens.ProgressScreen;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -37,7 +38,7 @@ public class TipsAPI {
 
     public static boolean canRenderOnScreen(Screen screen) {
 
-        return screen instanceof GenericDirtMessageScreen || screen instanceof ConnectScreen || screen instanceof DisconnectedScreen || screen instanceof LevelLoadingScreen || screen instanceof ProgressScreen || screen instanceof PauseScreen || screen instanceof DeathScreen;
+        return screen instanceof GenericDirtMessageScreen || screen instanceof ConnectScreen || screen instanceof DisconnectedScreen || screen instanceof LevelLoadingScreen || screen instanceof ProgressScreen || screen instanceof PauseScreen || screen instanceof DeathScreen || screen instanceof CreativeModeInventoryScreen;
     }
 
     public static ITip getRandomTip() {
