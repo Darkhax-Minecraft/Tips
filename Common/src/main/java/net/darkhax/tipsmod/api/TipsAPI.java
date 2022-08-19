@@ -24,6 +24,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class TipsAPI {
 
@@ -47,7 +48,12 @@ public class TipsAPI {
 
         if (!getLoadedTips().isEmpty()) {
 
-            return getLoadedTips().stream().filter(TipsAPI::canDisplayTip).skip(Constants.RANDOM.nextInt(getLoadedTips().size())).findFirst().orElse(EMPTY);
+            final List<ITip> filteredTips = getLoadedTips().stream().filter(TipsAPI::canDisplayTip).toList();
+
+            if (!filteredTips.isEmpty()) {
+
+                return filteredTips.get(Constants.RANDOM.nextInt(filteredTips.size()));
+            }
         }
 
         return EMPTY;
