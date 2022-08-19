@@ -25,7 +25,6 @@ import java.util.Optional;
 public class TipsAPI {
 
     public static final ResourceLocation DEFAULT_SERIALIZER = new ResourceLocation("tips", "simple_tip");
-    public static int DEFAULT_CYCLE_TIME = 5000;
     public static final Component DEFAULT_TITLE = Component.translatable("tipsmod.title.default").withStyle(ChatFormatting.BOLD, ChatFormatting.UNDERLINE, ChatFormatting.YELLOW);
     public static final ITip EMPTY = new SimpleTip(new ResourceLocation(Constants.MOD_ID, "empty"), DEFAULT_TITLE, Component.literal("No tips loaded. Please review your config options!"), Optional.of(999999));
     private static Map<ResourceLocation, ITipSerializer<?>> SERIALIZERS = new HashMap<>();
