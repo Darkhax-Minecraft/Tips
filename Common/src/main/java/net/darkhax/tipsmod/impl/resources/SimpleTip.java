@@ -5,6 +5,7 @@ import net.darkhax.bookshelf.api.serialization.Serializers;
 import net.darkhax.tipsmod.api.TipsAPI;
 import net.darkhax.tipsmod.api.resources.ITip;
 import net.darkhax.tipsmod.api.resources.ITipSerializer;
+import net.darkhax.tipsmod.impl.TipsModCommon;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
@@ -69,7 +70,7 @@ public class SimpleTip implements ITip {
     @Override
     public int getCycleTime() {
 
-        return this.cycleTime.orElse(TipsAPI.DEFAULT_CYCLE_TIME);
+        return this.cycleTime.orElse(TipsModCommon.CONFIG.defaultCycleTime);
     }
 
     private static final class Serializer implements ITipSerializer<SimpleTip> {
