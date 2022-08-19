@@ -18,17 +18,14 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 public class TipsAPI {
 
     public static final ResourceLocation DEFAULT_SERIALIZER = new ResourceLocation("tips", "simple_tip");
-    public static int DEFAULT_CYCLE_TIME = 5000;
     public static final Component DEFAULT_TITLE = Component.translatable("tipsmod.title.default").withStyle(ChatFormatting.BOLD, ChatFormatting.UNDERLINE, ChatFormatting.YELLOW);
     public static final ITip EMPTY = new SimpleTip(new ResourceLocation(Constants.MOD_ID, "empty"), DEFAULT_TITLE, Component.literal("No tips loaded. Please review your config options!"), Optional.of(999999));
     private static Map<ResourceLocation, ITipSerializer<?>> SERIALIZERS = new HashMap<>();
@@ -49,7 +46,12 @@ public class TipsAPI {
 
         if (!displayableTips.isEmpty()) {
 
-            return displayableTips.get(Constants.RANDOM.nextInt(displayableTips.size()));
+            final List<ITip> filteredTips = getLoadedTips().stream().filter(TipsAPI::canDisplayTip).toList();
+
+            if (!filteredTips.isEmpty()) {
+
+                return filteredTips.get(Constants.RANDOM.nextInt(filteredTips.size()));
+            }
         }
 
         return EMPTY;
