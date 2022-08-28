@@ -38,7 +38,7 @@ public class TipsAPI {
 
     public static boolean canRenderOnScreen(Screen screen) {
 
-        return screen instanceof GenericDirtMessageScreen || screen instanceof ConnectScreen || screen instanceof DisconnectedScreen || screen instanceof LevelLoadingScreen || screen instanceof ProgressScreen || screen instanceof PauseScreen || screen instanceof DeathScreen || screen instanceof CreativeModeInventoryScreen;
+        return screen instanceof GenericDirtMessageScreen || screen instanceof ConnectScreen || screen instanceof DisconnectedScreen || screen instanceof LevelLoadingScreen || screen instanceof ProgressScreen || screen instanceof PauseScreen || screen instanceof DeathScreen;
     }
 
     public static ITip getRandomTip() {
