@@ -80,6 +80,5 @@
   "gui.tips.list.entry.copied":"Kopiert!",
   "gui.tips.list.entry.click_to_copy":"Klicken, um ID zu kopieren",
   "gui.tips.list.entry.disabled":"Eintrag entfernt!",
-  "gui.tips.list.config":"Settings",
-  "gui.tips.list.back":"Zurück"
+  "gui.tips.list.config":"Settings"
 }
