@@ -70,6 +70,21 @@
   "tipsmod.tip.freezing_leather": "Leather armor can protect against freezing damage.",
   "tipsmod.tip.azalea_caves": "Azalea trees grow above the lush cave biomes.",
 
+  "tipsmod.tip.joke.axolotl": "Axolotl's don't actually Ask-a-lotl",
+  "tipsmod.tip.joke.button": "Despite the name, you don't have to sit on Buttons for them to work",
+  "tipsmod.tip.joke.chorus_fruit": "Chorus Fruit was added to the game in favor of Verse Vegetables and Pop Rocks",
+  "tipsmod.tip.joke.clownfish": "Clownfish are called clownfish because they look nothing like clowns",
+  "tipsmod.tip.joke.combat": "Zombies dislike it when you stab them with a sword.",
+  "tipsmod.tip.joke.iron": "A block of Iron contains enough Iron to make 7 cars out of",
+  "tipsmod.tip.joke.paintings": "Paintings should be called Craftings, as they aren't actually painted.",
+  "tipsmod.tip.joke.pyromaniacs": "Cooking animals alive heats up dinner, but not the heart",
+  "tipsmod.tip.joke.swim": "If you stay under water too long you may drown",
+  "tipsmod.tip.dragon_egg": "There's only one egg in minecraft that doesn't spawn an entity",
+  "tipsmod.tip.joke.redstone": "Redstone is red. It's also made of stone",
+  "tipsmod.tip.joke.rabbit": "Toast is made with Rabbit, not Bread",
+
+
+
   "gui.tips.list.title": "Tips List",
   "gui.tips.list.search": "Search",
   "gui.tips.list.show_disabled": "Show Disabled",
