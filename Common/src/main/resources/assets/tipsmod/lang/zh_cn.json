@@ -59,14 +59,15 @@
   "tipsmod.tip.piglin_repellent": "猪灵害怕灵魂火，包括灵魂火把和灵魂灯笼。",
   "tipsmod.tip.portal_trick": "使用水桶和熔岩桶，你可以轻松建造一个下界传送门。",
   "tipsmod.tip.blaze_fuel": "对熔炉来说，烈焰棒是一种不错的燃料。",
-  "gui.tipsmod.list.title": "提示列表",
-  "gui.tipsmod.list.search": "搜索",
-  "gui.tipsmod.list.show_disabled": "显示被禁用的提示",
-  "gui.tipsmod.list.entry.tip_id": "提示ID：%s",
-  "gui.tipsmod.list.entry.added_by": "提示来自：%s",
-  "gui.tipsmod.list.entry.cycle_time": "循环时间：%s",
-  "gui.tipsmod.list.entry.copied": "已复制！",
-  "gui.tipsmod.list.entry.click_to_copy": "单击以复制ID",
-  "gui.tipsmod.list.entry.disabled": "被配置禁用！",
-  "gui.tipsmod.list.config": "配置"
+
+  "gui.tips.list.title": "提示列表",
+  "gui.tips.list.search": "搜索",
+  "gui.tips.list.show_disabled": "显示被禁用的提示",
+  "gui.tips.list.entry.tip_id": "提示ID：%s",
+  "gui.tips.list.entry.added_by": "提示来自：%s",
+  "gui.tips.list.entry.cycle_time": "循环时间：%s",
+  "gui.tips.list.entry.copied": "已复制！",
+  "gui.tips.list.entry.click_to_copy": "单击以复制ID",
+  "gui.tips.list.entry.disabled": "被配置禁用！",
+  "gui.tips.list.config": "配置"
 }
