@@ -1,7 +1,0 @@
-{
-  "tip": {
-    "comment": "one m^3 of iron weighs 7873Kg (google) and the average car weighs 1857 kg (arbitrary google result).",
-    "comment2": "60% of a car is made out of iron and/or steel (google). 7873 / (1857*06) = 7.06).",
-    "translate": "tipsmod.tip.joke.iron"
-  }
-}
