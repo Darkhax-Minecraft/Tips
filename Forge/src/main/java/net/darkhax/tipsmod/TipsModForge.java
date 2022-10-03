@@ -2,8 +2,6 @@ package net.darkhax.tipsmod;
 
 import net.darkhax.bookshelf.api.Services;
 import net.darkhax.tipsmod.impl.Constants;
-import net.darkhax.tipsmod.impl.TipsModCommon;
-import net.minecraftforge.client.gui.GuiUtils;
 import net.minecraftforge.fml.IExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
