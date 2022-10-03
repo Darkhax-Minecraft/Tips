@@ -7,7 +7,7 @@
   "tipsmod.tip.witch_conversion": "Bybor omvandlas till häxor när de blir träffade av blixt.",
   "tipsmod.tip.four_eggs": "Att kläcka hönsägg kan föda fyra kycklingar i väldigt sällsynta fall.",
   "tipsmod.tip.nether_lava": "Lava sprider sig snabbare i Nether.",
-  "tipsmod.tip.east": "Solen, månen och stjärnorna rör sig österut.",
+  "tipsmod.tip.west": "Solen, månen och stjärnorna rör sig österut.",
   "tipsmod.tip.swamp_slime": "Slemkuber kan förekomma i träsk under en fullmåne.",
   "tipsmod.tip.deflect_ghast_fireballs": "Man kan reflektera eldbollar från ghastar genom att attackera dem.",
   "tipsmod.tip.shulker_armor": "Shulkrar tar betydligt mer skada när deras skal är öppna.",
@@ -61,14 +61,14 @@
   "tipsmod.tip.blaze_fuel": "Brännstavar kan användas som effektivt bränsle till ugnar.",
   "tipsmod.tip.portal_trick": "Genom att använda lava och vattenhinkar kan man göra en enkel netherportal.",
 
-  "gui.tipsmod.list.title": "Tips Lista",
-  "gui.tipsmod.list.search": "Sök",
-  "gui.tipsmod.list.show_disabled": "Visa Inaktiverade",
-  "gui.tipsmod.list.entry.tip_id": "Tips ID: %s",
-  "gui.tipsmod.list.entry.added_by": "Tillagt av: %s",
-  "gui.tipsmod.list.entry.cycle_time": "Genomloppstid: %s",
-  "gui.tipsmod.list.entry.copied": "Kopierad!",
-  "gui.tipsmod.list.entry.click_to_copy": "Tryck för att kopiera ID",
-  "gui.tipsmod.list.entry.disabled": "Inaktiverad av konfigurationen!",
-  "gui.tipsmod.list.config": "Konfiguration"
+  "gui.tips.list.title": "Tips Lista",
+  "gui.tips.list.search": "Sök",
+  "gui.tips.list.show_disabled": "Visa Inaktiverade",
+  "gui.tips.list.entry.tip_id": "Tips ID: %s",
+  "gui.tips.list.entry.added_by": "Tillagt av: %s",
+  "gui.tips.list.entry.cycle_time": "Genomloppstid: %s",
+  "gui.tips.list.entry.copied": "Kopierad!",
+  "gui.tips.list.entry.click_to_copy": "Tryck för att kopiera ID",
+  "gui.tips.list.entry.disabled": "Inaktiverad av konfigurationen!",
+  "gui.tips.list.config": "Konfiguration"
 }
