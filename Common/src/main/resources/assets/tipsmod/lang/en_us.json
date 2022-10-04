@@ -70,6 +70,16 @@
   "tipsmod.tip.freezing_leather": "Leather armor can protect against freezing damage.",
   "tipsmod.tip.azalea_caves": "Azalea trees grow above the lush cave biomes.",
 
+  "tipsmod.tip.end_dimension": "You cannot leave the end dimension without defeating the ender dragon.. or dying.",
+  "tipsmod.tip.hitting_obsidian": "It takes roughly 4 minutes to break an obsidian block by hand.",
+  "tipsmod.tip.sitting_pets": "Sitting pets will remain seated when sinking in water until they drown or you right-click them.",
+  "tipsmod.tip.snow_golem_trail": "You can harvest infinite snowballs from a snow golem's trail.",
+  "tipsmod.tip.mushroom_placement": "Mushrooms can only be placed on blocks where there's no direct sunlight.",
+  "tipsmod.tip.mushroom_biome_spawns": "Hostile mobs cannot spawn in a mushroom biome.",
+  "tipsmod.tip.shear_mooshroom": "You can shear a mooshroom to turn it into a normal cow.",
+  "tipsmod.tip.peaceful_tnt": "TNT cannot damage players in peaceful mode.",
+  "tipsmod.tip.weather_sleep": "Sleeping will clear up the sky and stop storm or rain.",
+
   "tipsmod.tip.joke.button": "Despite the name, you don't have to sit on Buttons for them to work.",
   "tipsmod.tip.joke.combat": "Zombies dislike it when you stab them with a sword.",
   "tipsmod.tip.joke.swim": "If you stay under water too long you may drown.",
@@ -80,7 +90,7 @@
   "tipsmod.tip.joke.creeper": "Don't play AC/DC near Creepers, they may become Thunderstruck.",
   "tipsmod.tip.joke.shears": "Running with Shears is safer in Minecraft.",
   "tipsmod.tip.joke.provoke": "Dragons are dangerous when provoked.",
-  "tipsmod.tip.only_egg": "The dragon egg is the only egg in Minecraft that doesn't spawn an entity.",
+  "tipsmod.tip.dragon_egg": "The dragon egg is the only egg in Minecraft that doesn't spawn an entity.",
 
   "gui.tips.list.title": "Tips List",
   "gui.tips.list.search": "Search",
