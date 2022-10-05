@@ -1,6 +1,5 @@
 package net.darkhax.tipsmod.impl.resources;
 
-import com.google.common.collect.ImmutableList;
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -10,7 +9,9 @@ import net.darkhax.tipsmod.impl.Constants;
 import net.darkhax.tipsmod.api.TipsAPI;
 import net.darkhax.tipsmod.api.resources.ITip;
 import net.darkhax.tipsmod.api.resources.ITipSerializer;
-import net.darkhax.tipsmod.impl.TipsModCommon;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.language.ClientLanguage;
+import net.minecraft.client.resources.language.LanguageInfo;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.server.packs.resources.SimpleJsonResourceReloadListener;
@@ -28,6 +29,8 @@ public class TipManager extends SimpleJsonResourceReloadListener {
     private final List<ITip> randomAccess = new ArrayList<>();
     private final List<ITip> immutableAccess = Collections.unmodifiableList(randomAccess);
 
+    private ClientLanguage selectedLanguage;
+
     public TipManager() {
 
         super(new Gson(), "tips");
@@ -38,11 +41,18 @@ public class TipManager extends SimpleJsonResourceReloadListener {
         return this.immutableAccess;
     }
 
+    public ClientLanguage getSelectedLanguage() {
+        return this.selectedLanguage;
+    }
+
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> map, ResourceManager resourceManager, ProfilerFiller profilerFiller) {
 
         this.loadedTips.clear();
         this.randomAccess.clear();
+
+        final LanguageInfo selectedLanguageInfo = Minecraft.getInstance().getLanguageManager().getSelected();
+        this.selectedLanguage = ClientLanguage.loadFrom(resourceManager, Collections.singletonList(selectedLanguageInfo));
 
         final long startTime = System.nanoTime();
 
