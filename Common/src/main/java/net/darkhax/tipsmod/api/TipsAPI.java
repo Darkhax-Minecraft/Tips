@@ -14,8 +14,10 @@ import net.minecraft.client.gui.screens.LevelLoadingScreen;
 import net.minecraft.client.gui.screens.PauseScreen;
 import net.minecraft.client.gui.screens.ProgressScreen;
 import net.minecraft.client.gui.screens.Screen;
-import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
+import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.ComponentContents;
+import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.HashMap;
@@ -74,6 +76,25 @@ public class TipsAPI {
         if (TipsModCommon.CONFIG.ignoredTips.contains(id.toString())) {
 
             return false;
+        }
+
+        final ComponentContents contents = tip.getText().getContents();
+
+        if (contents instanceof TranslatableContents) {
+
+            final String key = ((TranslatableContents) contents).getKey();
+
+            // Disable tips missing translation for selected language.
+            if (!TipsModCommon.CONFIG.useAmericanEnglishAsDefault && !TipsModCommon.TIP_MANAGER.getSelectedLanguage().has(key)) {
+
+                return false;
+            }
+
+            // Disable tips missing any translation. Should never happen, but just in case I guess.
+            if (!I18n.exists(key)) {
+
+                return false;
+            }
         }
 
         return true;
