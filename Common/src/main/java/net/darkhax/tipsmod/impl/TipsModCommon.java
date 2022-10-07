@@ -5,6 +5,7 @@ import net.darkhax.bookshelf.api.registry.RegistryDataProvider;
 import net.darkhax.tipsmod.api.TipsAPI;
 import net.darkhax.tipsmod.impl.resources.SimpleTip;
 import net.darkhax.tipsmod.impl.resources.TipManager;
+import net.minecraft.client.gui.screens.*;
 
 public class TipsModCommon extends RegistryDataProvider {
 
@@ -21,5 +22,13 @@ public class TipsModCommon extends RegistryDataProvider {
         super(Constants.MOD_ID);
         this.resourceListeners.add(() -> TIP_MANAGER, "tip_loader");
         TipsAPI.registerTipSerializer(TipsAPI.DEFAULT_SERIALIZER, SimpleTip.SERIALIZER);
+
+        TipsAPI.registerTipScreen(GenericDirtMessageScreen.class);
+        TipsAPI.registerTipScreen(ConnectScreen.class);
+        TipsAPI.registerTipScreen(DisconnectedScreen.class);
+        TipsAPI.registerTipScreen(LevelLoadingScreen.class);
+        TipsAPI.registerTipScreen(ProgressScreen.class);
+        TipsAPI.registerTipScreen(PauseScreen.class);
+        TipsAPI.registerTipScreen(DeathScreen.class);
     }
 }
