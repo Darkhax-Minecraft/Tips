@@ -6,13 +6,6 @@ import net.darkhax.tipsmod.api.resources.ITipSerializer;
 import net.darkhax.tipsmod.impl.TipsModCommon;
 import net.darkhax.tipsmod.impl.resources.SimpleTip;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.gui.screens.ConnectScreen;
-import net.minecraft.client.gui.screens.DeathScreen;
-import net.minecraft.client.gui.screens.DisconnectedScreen;
-import net.minecraft.client.gui.screens.GenericDirtMessageScreen;
-import net.minecraft.client.gui.screens.LevelLoadingScreen;
-import net.minecraft.client.gui.screens.PauseScreen;
-import net.minecraft.client.gui.screens.ProgressScreen;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
@@ -20,10 +13,7 @@ import net.minecraft.network.chat.ComponentContents;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 public class TipsAPI {
 
@@ -31,15 +21,21 @@ public class TipsAPI {
     public static final Component DEFAULT_TITLE = Component.translatable("tipsmod.title.default").withStyle(ChatFormatting.BOLD, ChatFormatting.UNDERLINE, ChatFormatting.YELLOW);
     public static final ITip EMPTY = new SimpleTip(new ResourceLocation(Constants.MOD_ID, "empty"), DEFAULT_TITLE, Component.literal("No tips loaded. Please review your config options!"), Optional.of(999999));
     private static Map<ResourceLocation, ITipSerializer<?>> SERIALIZERS = new HashMap<>();
+    private static Set<Class<? extends Screen>> SCREENS = new HashSet<>();
 
     public static void registerTipSerializer(ResourceLocation id, ITipSerializer<?> serializer) {
 
         SERIALIZERS.put(id, serializer);
     }
 
+    public static void registerTipScreen(Class<? extends Screen> screenClass) {
+
+        SCREENS.add(screenClass);
+    }
+
     public static boolean canRenderOnScreen(Screen screen) {
 
-        return screen instanceof GenericDirtMessageScreen || screen instanceof ConnectScreen || screen instanceof DisconnectedScreen || screen instanceof LevelLoadingScreen || screen instanceof ProgressScreen || screen instanceof PauseScreen || screen instanceof DeathScreen;
+        return SCREENS.stream().filter(clazz -> clazz.isInstance(screen)).count() > 0;
     }
 
     public static ITip getRandomTip() {
