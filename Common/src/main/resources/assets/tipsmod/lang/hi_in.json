@@ -100,6 +100,6 @@
     "gui.tips.list.entry.cycle_time": "क्रिप्शन समय: %s" ,
     "gui.tips.list.entry.copied": "कॉपी करें",
     "gui.tips.list.entry.click_to_copy": "कॉपी ID पर क्लिक करें।",
-    "gui.tips.list.entry.disabled": "Config द्वारा अक्षम!",
-    "gui.tips.list.config": "पार्टमेंट" 
+    "gui.tips.list.entry.disabled": "कॉन्फिग द्वारा अक्षम!",
+    "gui.tips.list.config": "कॉन्फिग " 
 }
