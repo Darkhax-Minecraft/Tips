@@ -79,6 +79,7 @@
   "tipsmod.tip.shear_mooshroom": "You can shear a mooshroom to turn it into a normal cow.",
   "tipsmod.tip.peaceful_tnt": "TNT cannot damage players in peaceful mode.",
   "tipsmod.tip.weather_sleep": "Sleeping will clear up the sky and stop storm or rain.",
+  "tipsmod.tip.spawner_egg":  "You can change spawner's type by using spawn egg on it.",
 
   "tipsmod.tip.joke.button": "Despite the name, you don't have to sit on Buttons for them to work.",
   "tipsmod.tip.joke.combat": "Zombies dislike it when you stab them with a sword.",
@@ -90,6 +91,7 @@
   "tipsmod.tip.joke.creeper": "Don't play AC/DC near Creepers, they may become Thunderstruck.",
   "tipsmod.tip.joke.shears": "Running with Shears is safer in Minecraft.",
   "tipsmod.tip.joke.provoke": "Dragons are dangerous when provoked.",
+  "tipsmod.tip.joke.hp": "The best strategy to defeat enemies is to reduce their health to zero while keeping yours above zero",
   "tipsmod.tip.dragon_egg": "The dragon egg is the only egg in Minecraft that doesn't spawn an entity.",
 
   "gui.tips.list.title": "Tips List",

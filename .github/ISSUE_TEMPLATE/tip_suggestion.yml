@@ -1,0 +1,23 @@
+name: 📝 New Tip
+description: Propose new tip to be displayed
+labels: [ "tips" ]
+body:
+  - type: textarea
+    attributes:
+      label: Tip content in English
+      description: Exactly how it would be displayed in the game
+      placeholder: Did you know that some minecraft sounds contain secrets in their spectrograms?
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Translations
+      description: If you can speak other languages, add translations below
+      value: |
+        - Japanese: ラメン 大好き!
+        - Spanish: Ola, señor!
+    validations:
+      required: false
+  - type: markdown
+    attributes:
+      value: "Thanks for suggestion!"

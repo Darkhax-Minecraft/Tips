@@ -1,0 +1,23 @@
+name: 🌐 Translation
+description: Propose translation for existing tip
+labels: [ "translations" ]
+body:
+  - type: input
+    attributes:
+      label: tip key
+      description: key of the translation found in [`Common/src/main/resources/assets/tipsmod/lang/en_us.json`](../blob/HEAD/Common/src/main/resources/assets/tipsmod/lang/en_us.json)
+      placeholder: "tipsmod.tip.example_key"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Translations
+      description: List of your languages and translations
+      value: |
+        - Japanese: ラメン 大好き!
+        - Spanish: Ola, señor!
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: "Thank you for your contribution!"
