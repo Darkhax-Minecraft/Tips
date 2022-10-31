@@ -95,7 +95,7 @@
   "gui.tips.list.title": "Liste des conseils",
   "gui.tips.list.search": "Recherche",
   "gui.tips.list.show_disabled": "Afficher les désactivés",
-  "gui.tips.list.entry.tip_id": "Tip ID: %s",
+  "gui.tips.list.entry.tip_id": "Tip ID : %s",
   "gui.tips.list.entry.added_by": "Ajouté par : %s",
   "gui.tips.list.entry.cycle_time": "Temps affiché : %s",
   "gui.tips.list.entry.copied": "Copié !",
