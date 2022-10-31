@@ -1,7 +1,7 @@
 {
   "tipsmod.title.default": "Conseil",
 
-  "tipsmod.tip.no_tips": "Aucun conseil n'a été chargé. Veuillez revoir les configurations.",
+  "tipsmod.tip.no_tips": "Aucun conseil n'a été chargé. Veuillez vérifier la configuration.",
   "tipsmod.tip.undead_damage": "Les monstres morts-vivants comme les squelettes prennent des dégâts par les potions de santé et soignés par les potions de dégâts.",
   "tipsmod.tip.poison_immune": "Les zombies, les squelettes et les araignées sont tous immunisés contre les dégâts de poison.",
   "tipsmod.tip.witch_conversion": "Les villageois deviennent des sorcières lorsqu'ils sont frappés par la foudre.",
