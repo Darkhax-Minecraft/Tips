@@ -22,7 +22,7 @@ public class ButtonTextField extends EditBox {
         
         if (this.isVisible() && this.getValue().isEmpty() && !this.isFocused()) {
             
-            drawString(matrixStack, this.font, this.getMessage(), this.x + 4 - 1, this.y + (this.height - 8) / 2, -8355712);
+            drawString(matrixStack, this.font, this.getMessage(), this.getX() + 4 - 1, this.getY() + (this.height - 8) / 2, -8355712);
         }
     }
 }

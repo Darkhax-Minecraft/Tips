@@ -42,8 +42,8 @@ public class TipsListScreen extends OptionsSubScreen {
         
         this.showDisabled = new FunctionalCheckbox(this.width / 2 - 20 / 2 + 50, this.height - 26, 20, 20, Component.translatable("gui.tips.list.show_disabled"), false, p -> this.list.refreshEntries(p, this.searchBar.getValue()));
         this.addRenderableWidget(this.showDisabled);
-        
-        this.openConfigFile = new Button(this.width - 70, this.height - 26, 60, 20, Component.translatable("gui.tips.list.config"), this::openConfigFile);
+
+        this.openConfigFile = Button.builder(Component.translatable("gui.tips.list.config"), this::openConfigFile).bounds(this.width - 70, this.height - 26, 60, 20).build();
         this.addRenderableWidget(this.openConfigFile);
         
         this.searchBar.setResponder(s -> {
