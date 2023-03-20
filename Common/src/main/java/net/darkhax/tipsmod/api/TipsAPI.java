@@ -13,7 +13,12 @@ import net.minecraft.network.chat.ComponentContents;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
 
 public class TipsAPI {
 
@@ -80,13 +85,7 @@ public class TipsAPI {
 
             final String key = ((TranslatableContents) contents).getKey();
 
-            // Disable tips missing translation for selected language.
-            if (!TipsModCommon.CONFIG.useAmericanEnglishAsDefault && !TipsModCommon.TIP_MANAGER.getSelectedLanguage().has(key)) {
-
-                return false;
-            }
-
-            // Disable tips missing any translation. Should never happen, but just in case I guess.
+            // Ignore tips that don't have a localization in the current language.
             if (!I18n.exists(key)) {
 
                 return false;

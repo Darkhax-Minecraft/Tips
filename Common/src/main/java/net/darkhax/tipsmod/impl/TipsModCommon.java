@@ -5,7 +5,13 @@ import net.darkhax.bookshelf.api.registry.RegistryDataProvider;
 import net.darkhax.tipsmod.api.TipsAPI;
 import net.darkhax.tipsmod.impl.resources.SimpleTip;
 import net.darkhax.tipsmod.impl.resources.TipManager;
-import net.minecraft.client.gui.screens.*;
+import net.minecraft.client.gui.screens.ConnectScreen;
+import net.minecraft.client.gui.screens.DeathScreen;
+import net.minecraft.client.gui.screens.DisconnectedScreen;
+import net.minecraft.client.gui.screens.GenericDirtMessageScreen;
+import net.minecraft.client.gui.screens.LevelLoadingScreen;
+import net.minecraft.client.gui.screens.PauseScreen;
+import net.minecraft.client.gui.screens.ProgressScreen;
 
 public class TipsModCommon extends RegistryDataProvider {
 
