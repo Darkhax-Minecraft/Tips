@@ -90,7 +90,7 @@
   "tipsmod.tip.joke.creeper": "Крипер был неудачной попыткой Нотча создать свинью.",
   "tipsmod.tip.joke.shears": "Бегать с ножницами безопаснее в Minecraft.",
   "tipsmod.tip.joke.provoke": "Драконы небезопасны, когда их провоцируют.",
-  "tipsmod.tip.dragon_egg": "Яйцо дракона — единственное яйцо в Minecraft, которое не спавнит сущность.",
+  "tipsmod.tip.dragon_egg": "Яйцо дракона — единственное яйцо в Minecraft, которое не может заспавнить моба.",
 
 
   "gui.tips.list.title": "Список советов",
