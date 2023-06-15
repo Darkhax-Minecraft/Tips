@@ -16,5 +16,11 @@ pluginManagement {
     }
 }
 
-rootProject.name = 'Tips'
-include('Common', 'Fabric', 'Forge')
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.5.0'
+}
+
+rootProject.name = "Tips"
+include('common')
+include('fabric')
+include('forge')
