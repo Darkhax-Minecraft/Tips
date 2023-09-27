@@ -1,6 +1,7 @@
 package net.darkhax.tipsmod.impl.resources;
 
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParseException;
 import net.darkhax.bookshelf.api.serialization.Serializers;
 import net.darkhax.tipsmod.api.TipsAPI;
 import net.darkhax.tipsmod.api.resources.ITip;
@@ -81,6 +82,17 @@ public class SimpleTip implements ITip {
             final Component title = Serializers.TEXT.fromJSON(json, "title", TipsAPI.DEFAULT_TITLE);
             final Component text = Serializers.TEXT.fromJSON(json, "tip");
             final Optional<Integer> cycleTime = Serializers.INT.fromJSONOptional(json, "cycleTime");
+
+            if (title == null) {
+
+                throw new JsonParseException("Tip " + id.toString() + " does not have a title. This is required!");
+            }
+
+            if (text == null) {
+
+                throw new JsonParseException("Tip " + id.toString() + " does not have text. This is required.");
+            }
+
             return new SimpleTip(id, title, text, cycleTime);
         }
 
