@@ -67,6 +67,29 @@ public class TipsAPI {
 
     public static boolean canDisplayTip(ITip tip) {
 
+        if (tip == null) {
+
+            return false;
+        }
+
+        if (tip.getId() == null) {
+
+            Constants.LOG.error("Found invalid tip without an ID. Object: {}, Class: {}", tip, tip.getClass());
+            return false;
+        }
+
+        else if (tip.getTitle() == null) {
+
+            Constants.LOG.error("Found invalid tip. Title is null. Object: {}, Class: {}, ID: {}", tip, tip.getClass(), tip.getId());
+            return false;
+        }
+
+        else if (tip.getText() == null) {
+
+            Constants.LOG.error("Found invalid tip. Text is null. Object: {}, Class: {}, ID: {}", tip, tip.getClass(), tip.getId());
+            return false;
+        }
+
         final ResourceLocation id = tip.getId();
 
         if (TipsModCommon.CONFIG.ignoredNamespaces.contains(id.getNamespace())) {
