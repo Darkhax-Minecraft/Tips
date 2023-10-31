@@ -27,6 +27,7 @@ public class TipsAPI {
     public static final ITip EMPTY = new SimpleTip(new ResourceLocation(Constants.MOD_ID, "empty"), DEFAULT_TITLE, Component.literal("No tips loaded. Please review your config options!"), Optional.of(999999));
     private static Map<ResourceLocation, ITipSerializer<?>> SERIALIZERS = new HashMap<>();
     private static Set<Class<? extends Screen>> SCREENS = new HashSet<>();
+    private static int currentTipIndex = 0;
 
     public static void registerTipSerializer(ResourceLocation id, ITipSerializer<?> serializer) {
 
@@ -47,9 +48,14 @@ public class TipsAPI {
 
         final List<ITip> filteredTips = getLoadedTips().stream().filter(TipsAPI::canDisplayTip).toList();
 
+        if (currentTipIndex + 1 > filteredTips.size()) {
+
+            currentTipIndex = 0;
+        }
+
         if (!filteredTips.isEmpty()) {
 
-            return filteredTips.get(Constants.RANDOM.nextInt(filteredTips.size()));
+            return filteredTips.get(currentTipIndex++);
         }
 
         return EMPTY;
