@@ -89,6 +89,14 @@
   "tipsmod.tip.joke.shears": "Mit Scheren zu Rennen ist sicherer in Minecraft.",
   "tipsmod.tip.joke.provoke": "Drachen sind gefährlich wenn sie provoziert werden.",
 
+	"tipsmod.tip.brown_mushroom_cow": "Werden rote Pilzkühe vom Blitz getroffen, werden Sie zu braunen Pilzkühen.",
+	"tipsmod.tip.gamemode": "Drückst du F3 und F4 gleichzeitig, kannst du schnell den Spielmodus wechseln.",
+	"tipsmod.tip.gamemode_last": "Durch drücken von F3+N, wechselst du schnell zu deinem letzem Spielmodus.",
+	"tipsmod.tip.fuels": "Einige Ofen Brennstoffe, brennen länger als andere, probier herum.",
+	"tipsmod.tip.mushroom_stew": "Melkt man eine Pilzkuh mit einer Holzschüssel, gibt es Pilzsuppe.",
+	"tipsmod.tip.suspicious_stew": "Fütterst du eine Braune Pilzkuh mit einer Blume, erhählst du Merkwürdige Suppe.",
+	"tipsmod.tip.pink_sheep": "Pink Schafe können natürlich spawnen, sind aber selten.",
+
   "gui.tips.list.title":"Liste der Tipps",
   "gui.tips.list.search":"Suchen",
   "gui.tips.list.show_disabled":"Zeige ausgeblendete Tipps",
