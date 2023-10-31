@@ -75,7 +75,7 @@ public class TipManager extends SimpleJsonResourceReloadListener {
                 Constants.LOG.error("Failed to load tip {}!", tipId, e);
             }
         });
-
+        Collections.shuffle(this.randomAccess);
         Constants.LOG.debug("Loaded {} tips. Took {}ms.", this.loadedTips.size(), (double) (System.nanoTime() - startTime) / 1000000d);
     }
 }
