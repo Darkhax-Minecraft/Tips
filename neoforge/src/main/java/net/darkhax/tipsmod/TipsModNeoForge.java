@@ -2,20 +2,20 @@ package net.darkhax.tipsmod;
 
 import net.darkhax.bookshelf.api.Services;
 import net.darkhax.tipsmod.impl.Constants;
-import net.minecraftforge.fml.IExtensionPoint;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
+import net.neoforged.fml.IExtensionPoint;
+import net.neoforged.fml.ModLoadingContext;
+import net.neoforged.fml.common.Mod;
 
 @Mod(Constants.MOD_ID)
-public class TipsModForge {
+public class TipsModNeoForge {
 
-    public TipsModForge() {
+    public TipsModNeoForge() {
 
         ModLoadingContext.get().registerExtensionPoint(IExtensionPoint.DisplayTest.class, () -> new IExtensionPoint.DisplayTest(() -> IExtensionPoint.DisplayTest.IGNORESERVERONLY, (a, b) -> true));
 
         if (Services.PLATFORM.isPhysicalClient()) {
 
-            TipsModForgeClient.init();
+            TipsModNeoForgeClient.init();
         }
     }
 }
