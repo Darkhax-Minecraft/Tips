@@ -27,7 +27,6 @@ public class TipsModCommon extends RegistryDataProvider {
 
         super(Constants.MOD_ID);
         this.resourceListeners.add(() -> TIP_MANAGER, "tip_loader");
-        TipsAPI.registerTipSerializer(TipsAPI.DEFAULT_SERIALIZER, SimpleTip.SERIALIZER);
 
         TipsAPI.registerTipScreen(GenericDirtMessageScreen.class);
         TipsAPI.registerTipScreen(ConnectScreen.class);

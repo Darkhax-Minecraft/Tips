@@ -1,14 +1,15 @@
 package net.darkhax.tipsmod.impl.resources;
 
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import net.darkhax.bookshelf.api.serialization.Serializers;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+import net.darkhax.bookshelf.api.data.bytebuf.BookshelfByteBufs;
+import net.darkhax.bookshelf.api.data.bytebuf.ByteBufHelper;
+import net.darkhax.bookshelf.api.data.codecs.BookshelfCodecs;
+import net.darkhax.bookshelf.api.data.codecs.CodecHelper;
+import net.darkhax.tipsmod.api.TipTypes;
 import net.darkhax.tipsmod.api.TipsAPI;
 import net.darkhax.tipsmod.api.resources.ITip;
-import net.darkhax.tipsmod.api.resources.ITipSerializer;
 import net.darkhax.tipsmod.impl.TipsModCommon;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 
 import java.util.Optional;
 
@@ -17,15 +18,25 @@ import java.util.Optional;
  */
 public class SimpleTip implements ITip {
 
-    /**
-     * The serializer for this type of tip.
-     */
-    public static final ITipSerializer<SimpleTip> SERIALIZER = new Serializer();
+    public static final CodecHelper<SimpleTip> CODEC = new CodecHelper<>(RecordCodecBuilder.create(instance -> instance.group(
+            BookshelfCodecs.TEXT.get("title", SimpleTip::getTitle, TipsAPI.DEFAULT_TITLE),
+            BookshelfCodecs.TEXT.get("tip", SimpleTip::getText),
+            BookshelfCodecs.INT.getOptional("cycleTime", SimpleTip::getInternalCycleTime)
+    ).apply(instance, SimpleTip::new)));
 
-    /**
-     * The namespaced id of the tip.
-     */
-    private final ResourceLocation id;
+    public static final ByteBufHelper<SimpleTip> BUFFER = new ByteBufHelper<>(
+            buffer -> {
+                final Component title = BookshelfByteBufs.TEXT.read(buffer);
+                final Component tip = BookshelfByteBufs.TEXT.read(buffer);
+                final Optional<Integer> cycleTime = BookshelfByteBufs.INT.readOptional(buffer);
+                return new SimpleTip(title, tip, cycleTime);
+            },
+            (buffer, toWrite) -> {
+                BookshelfByteBufs.TEXT.write(buffer, toWrite.getTitle());
+                BookshelfByteBufs.TEXT.write(buffer, toWrite.getText());
+                BookshelfByteBufs.INT.writeOptional(buffer, toWrite.getInternalCycleTime());
+            }
+    );
 
     /**
      * The title text to display.
@@ -42,18 +53,11 @@ public class SimpleTip implements ITip {
      */
     private final Optional<Integer> cycleTime;
 
-    public SimpleTip(ResourceLocation id, Component title, Component text, Optional<Integer> cycleTime) {
+    public SimpleTip(Component title, Component text, Optional<Integer> cycleTime) {
 
-        this.id = id;
         this.title = title;
         this.text = text;
         this.cycleTime = cycleTime;
-    }
-
-    @Override
-    public ResourceLocation getId() {
-
-        return this.id;
     }
 
     @Override
@@ -74,37 +78,14 @@ public class SimpleTip implements ITip {
         return this.cycleTime.orElse(TipsModCommon.CONFIG.defaultCycleTime);
     }
 
-    private static final class Serializer implements ITipSerializer<SimpleTip> {
+    @Override
+    public TipTypes.TipType getType() {
 
-        @Override
-        public SimpleTip fromJSON(ResourceLocation id, JsonObject json) {
+        return TipTypes.SIMPLE_TIP_TYPE;
+    }
 
-            final Component title = Serializers.TEXT.fromJSON(json, "title", TipsAPI.DEFAULT_TITLE);
-            final Component text = Serializers.TEXT.fromJSON(json, "tip");
-            final Optional<Integer> cycleTime = Serializers.INT.fromJSONOptional(json, "cycleTime");
+    protected Optional<Integer> getInternalCycleTime() {
 
-            if (title == null) {
-
-                throw new JsonParseException("Tip " + id.toString() + " does not have a title. This is required!");
-            }
-
-            if (text == null) {
-
-                throw new JsonParseException("Tip " + id.toString() + " does not have text. This is required.");
-            }
-
-            return new SimpleTip(id, title, text, cycleTime);
-        }
-
-        @Override
-        public JsonObject toJSON(SimpleTip toWrite) {
-
-            final JsonObject json = new JsonObject();
-            Serializers.RESOURCE_LOCATION.toJSON(json, "type", TipsAPI.DEFAULT_SERIALIZER);
-            Serializers.TEXT.toJSON(json, "title", toWrite.title);
-            Serializers.TEXT.toJSON(json, "tip", toWrite.text);
-            Serializers.INT.toJSONOptional(json, "cycleTime", toWrite.cycleTime);
-            return json;
-        }
+        return this.cycleTime;
     }
 }

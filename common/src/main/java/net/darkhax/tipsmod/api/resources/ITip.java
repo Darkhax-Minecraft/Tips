@@ -1,5 +1,6 @@
 package net.darkhax.tipsmod.api.resources;
 
+import net.darkhax.tipsmod.api.TipTypes;
 import net.darkhax.tipsmod.impl.TipsModCommon;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -8,13 +9,6 @@ import net.minecraft.resources.ResourceLocation;
  * Defines a tip that is displayed on certain menus.
  */
 public interface ITip {
-    
-    /**
-     * Gets the namespaced identifier for the tip.
-     * 
-     * @return The namespaced identifier for the tip.
-     */
-    ResourceLocation getId ();
     
     /**
      * Gets the title for the tip. This is the part on top of the tip which explains what it
@@ -41,4 +35,6 @@ public interface ITip {
 
         return TipsModCommon.CONFIG.defaultCycleTime;
     }
+
+    TipTypes.TipType getType();
 }

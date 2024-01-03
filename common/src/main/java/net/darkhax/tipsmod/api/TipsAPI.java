@@ -2,9 +2,9 @@ package net.darkhax.tipsmod.api;
 
 import net.darkhax.bookshelf.Constants;
 import net.darkhax.tipsmod.api.resources.ITip;
-import net.darkhax.tipsmod.api.resources.ITipSerializer;
 import net.darkhax.tipsmod.impl.TipsModCommon;
 import net.darkhax.tipsmod.impl.resources.SimpleTip;
+import net.darkhax.tipsmod.impl.resources.TipManager;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.resources.language.I18n;
@@ -13,25 +13,17 @@ import net.minecraft.network.chat.ComponentContents;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
 
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 
 public class TipsAPI {
 
-    public static final ResourceLocation DEFAULT_SERIALIZER = new ResourceLocation("tips", "simple_tip");
+    public static final ResourceLocation DEFAULT_SERIALIZER = Constants.id("simple_tip");
     public static final Component DEFAULT_TITLE = Component.translatable("tipsmod.title.default").withStyle(ChatFormatting.BOLD, ChatFormatting.UNDERLINE, ChatFormatting.YELLOW);
-    public static final ITip EMPTY = new SimpleTip(new ResourceLocation(Constants.MOD_ID, "empty"), DEFAULT_TITLE, Component.literal("No tips loaded. Please review your config options!"), Optional.of(999999));
-    private static Map<ResourceLocation, ITipSerializer<?>> SERIALIZERS = new HashMap<>();
+    public static final TipManager.TipHolder EMPTY = new TipManager.TipHolder(Constants.id("empty"), new SimpleTip(DEFAULT_TITLE, Component.literal("No tips loaded. Please review your config options!"), Optional.of(999999)));
     private static Set<Class<? extends Screen>> SCREENS = new HashSet<>();
-
-    public static void registerTipSerializer(ResourceLocation id, ITipSerializer<?> serializer) {
-
-        SERIALIZERS.put(id, serializer);
-    }
 
     public static void registerTipScreen(Class<? extends Screen> screenClass) {
 
@@ -43,9 +35,9 @@ public class TipsAPI {
         return SCREENS.stream().filter(clazz -> clazz.isInstance(screen)).count() > 0;
     }
 
-    public static ITip getRandomTip() {
+    public static TipManager.TipHolder getRandomTip() {
 
-        final List<ITip> filteredTips = getLoadedTips().stream().filter(TipsAPI::canDisplayTip).toList();
+        final List<TipManager.TipHolder> filteredTips = getLoadedTips().stream().filter(TipsAPI::canDisplayTip).toList();
 
         if (!filteredTips.isEmpty()) {
 
@@ -55,42 +47,19 @@ public class TipsAPI {
         return EMPTY;
     }
 
-    public static ITipSerializer<?> getTipSerializer(ResourceLocation id) {
-
-        return SERIALIZERS.get(id);
-    }
-
-    public static List<ITip> getLoadedTips() {
+    public static List<TipManager.TipHolder> getLoadedTips() {
 
         return TipsModCommon.TIP_MANAGER.getTips();
     }
 
-    public static boolean canDisplayTip(ITip tip) {
+    public static boolean canDisplayTip(TipManager.TipHolder holder) {
 
-        if (tip == null) {
+        if (holder == null || holder.tip() == null) {
 
             return false;
         }
 
-        if (tip.getId() == null) {
-
-            Constants.LOG.error("Found invalid tip without an ID. Object: {}, Class: {}", tip, tip.getClass());
-            return false;
-        }
-
-        else if (tip.getTitle() == null) {
-
-            Constants.LOG.error("Found invalid tip. Title is null. Object: {}, Class: {}, ID: {}", tip, tip.getClass(), tip.getId());
-            return false;
-        }
-
-        else if (tip.getText() == null) {
-
-            Constants.LOG.error("Found invalid tip. Text is null. Object: {}, Class: {}, ID: {}", tip, tip.getClass(), tip.getId());
-            return false;
-        }
-
-        final ResourceLocation id = tip.getId();
+        final ResourceLocation id = holder.id();
 
         if (TipsModCommon.CONFIG.ignoredNamespaces.contains(id.getNamespace())) {
 
@@ -102,11 +71,11 @@ public class TipsAPI {
             return false;
         }
 
-        final ComponentContents contents = tip.getText().getContents();
+        final ComponentContents contents = holder.tip().getText().getContents();
 
-        if (contents instanceof TranslatableContents) {
+        if (contents instanceof TranslatableContents translatableContents) {
 
-            final String key = ((TranslatableContents) contents).getKey();
+            final String key = translatableContents.getKey();
 
             // Ignore tips that don't have a localization in the current language.
             if (!I18n.exists(key)) {

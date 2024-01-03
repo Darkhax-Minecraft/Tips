@@ -2,12 +2,9 @@ package net.darkhax.tipsmod.impl.resources;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParseException;
-import net.darkhax.bookshelf.api.serialization.Serializers;
-import net.darkhax.tipsmod.api.TipsAPI;
+import com.mojang.serialization.JsonOps;
+import net.darkhax.tipsmod.api.TipTypes;
 import net.darkhax.tipsmod.api.resources.ITip;
-import net.darkhax.tipsmod.api.resources.ITipSerializer;
 import net.darkhax.tipsmod.impl.Constants;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -22,16 +19,16 @@ import java.util.Map;
 
 public class TipManager extends SimpleJsonResourceReloadListener {
 
-    private final Map<ResourceLocation, ITip> loadedTips = new HashMap();
-    private final List<ITip> randomAccess = new ArrayList<>();
-    private final List<ITip> immutableAccess = Collections.unmodifiableList(randomAccess);
+    private final Map<ResourceLocation, TipHolder> loadedTips = new HashMap();
+    private final List<TipHolder> randomAccess = new ArrayList<>();
+    private final List<TipHolder> immutableAccess = Collections.unmodifiableList(randomAccess);
 
     public TipManager() {
 
         super(new Gson(), "tips");
     }
 
-    public List<ITip> getTips() {
+    public List<TipHolder> getTips() {
 
         return this.immutableAccess;
     }
@@ -48,25 +45,17 @@ public class TipManager extends SimpleJsonResourceReloadListener {
 
             try {
 
-                if (tipData instanceof JsonObject json) {
+                final ITip tipEntry = TipTypes.TIP_DISPATCH.decode(JsonOps.INSTANCE, tipData).getOrThrow(false, error -> Constants.LOG.error("Could not decode tip {}. Error: {}", tipId, error)).getFirst();
 
-                    final ResourceLocation serializerID = Serializers.RESOURCE_LOCATION.fromJSON(json, "type", TipsAPI.DEFAULT_SERIALIZER);
-                    final ITipSerializer<?> serializer = TipsAPI.getTipSerializer(serializerID);
+                if (tipEntry != null) {
 
-                    if (serializer == null) {
+                    final TipHolder holder = new TipHolder(tipId, tipEntry);
+                    this.loadedTips.put(tipId, holder);
+                    this.randomAccess.add(holder);
+                }
 
-                        throw new JsonParseException("Serializer " + serializerID + " is unknown!");
-                    }
-
-                    final ITip tipEntry = serializer.fromJSON(tipId, json);
-
-                    if (tipEntry == null) {
-
-                        throw new JsonParseException("Serializer " + serializerID + " produced a null result!");
-                    }
-
-                    this.loadedTips.put(tipId, tipEntry);
-                    this.randomAccess.add(tipEntry);
+                else {
+                    Constants.LOG.error("Tip {} was null and will not be loaded. Data: {}", tipId, tipData);
                 }
             }
 
@@ -77,5 +66,9 @@ public class TipManager extends SimpleJsonResourceReloadListener {
         });
 
         Constants.LOG.debug("Loaded {} tips. Took {}ms.", this.loadedTips.size(), (double) (System.nanoTime() - startTime) / 1000000d);
+    }
+
+    public static record TipHolder(ResourceLocation id, ITip tip) {
+
     }
 }

@@ -28,10 +28,3 @@ mandatory = true
 versionRange = "${minecraft_version}"
 ordering = "NONE"
 side = "BOTH"
-
-[[dependencies.${ mod_id }]]
-modId = "bookshelf"
-mandatory = true
-versionRange = "${bookshelf_version}"
-ordering = "NONE"
-side = "CLIENT"
