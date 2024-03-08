@@ -13,6 +13,8 @@ import net.minecraft.network.chat.ComponentContents;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
@@ -32,7 +34,17 @@ public class TipsAPI {
 
     public static boolean canRenderOnScreen(Screen screen) {
 
-        return SCREENS.stream().filter(clazz -> clazz.isInstance(screen)).count() > 0;
+        return canRenderOnScreen(screen.getClass());
+    }
+
+    public static boolean canRenderOnScreen(Class<?> clazz) {
+
+        return SCREENS.contains(clazz) && !TipsModCommon.CONFIG.ignoredScreens.contains(clazz.getCanonicalName());
+    }
+
+    public static Collection<Class<?>> getTipsScreens() {
+
+        return Collections.unmodifiableSet(SCREENS);
     }
 
     public static TipManager.TipHolder getRandomTip() {

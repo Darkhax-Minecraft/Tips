@@ -4,6 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.mojang.serialization.JsonOps;
 import net.darkhax.tipsmod.api.TipTypes;
+import net.darkhax.tipsmod.api.TipsAPI;
 import net.darkhax.tipsmod.api.resources.ITip;
 import net.darkhax.tipsmod.impl.Constants;
 import net.minecraft.resources.ResourceLocation;
@@ -65,7 +66,9 @@ public class TipManager extends SimpleJsonResourceReloadListener {
             }
         });
 
-        Constants.LOG.debug("Loaded {} tips. Took {}ms.", this.loadedTips.size(), (double) (System.nanoTime() - startTime) / 1000000d);
+        Constants.LOG.info("Loaded {} tips. Took {}ms.", this.loadedTips.size(), (double) (System.nanoTime() - startTime) / 1000000d);
+        Constants.LOG.info("The following screens have been registered to the tips mod.");
+        TipsAPI.getTipsScreens().forEach(screen -> Constants.LOG.info("Screen: '{}' Enabled: '{}'", screen.getCanonicalName(), TipsAPI.canRenderOnScreen(screen)));
     }
 
     public static record TipHolder(ResourceLocation id, ITip tip) {

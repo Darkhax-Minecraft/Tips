@@ -24,6 +24,9 @@ public class Config {
     @Expose
     public List<String> ignoredTips = new ArrayList<>();
 
+    @Expose
+    public List<String> ignoredScreens = new ArrayList<>();
+
     public static Config load() {
 
         File configFile = Services.PLATFORM.getConfigPath().resolve("tips.json").toFile();
