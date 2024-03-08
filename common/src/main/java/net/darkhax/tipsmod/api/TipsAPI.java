@@ -13,9 +13,10 @@ import net.minecraft.client.resources.language.I18n;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.resources.ResourceLocation;
-
 import javax.annotation.Nullable;
 import java.util.HashMap;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +46,17 @@ public class TipsAPI {
 
     public static boolean canRenderOnScreen(Screen screen) {
 
-        return SCREENS.stream().anyMatch(clazz -> clazz.isInstance(screen));
+        return canRenderOnScreen(screen.getClass());
+    }
+
+    public static boolean canRenderOnScreen(Class<?> clazz) {
+
+        return SCREENS.contains(clazz) && !TipsModCommon.CONFIG.ignoredScreens.contains(clazz.getCanonicalName());
+    }
+
+    public static Collection<Class<?>> getTipsScreens() {
+
+        return Collections.unmodifiableSet(SCREENS);
     }
 
     @Nullable

@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParseException;
 import net.darkhax.bookshelf.api.serialization.Serializers;
+import com.mojang.serialization.JsonOps;
 import net.darkhax.tipsmod.api.TipsAPI;
 import net.darkhax.tipsmod.api.resources.ITip;
 import net.darkhax.tipsmod.api.resources.ITipSerializer;
@@ -78,6 +79,8 @@ public class TipManager extends SimpleJsonResourceReloadListener {
             }
         });
         Collections.shuffle(this.randomAccess);
-        Constants.LOG.debug("Loaded {} tips. Took {}ms.", this.loadedTips.size(), (double) (System.nanoTime() - startTime) / 1000000d);
+        Constants.LOG.info("Loaded {} tips. Took {}ms.", this.loadedTips.size(), (double) (System.nanoTime() - startTime) / 1000000d);
+        Constants.LOG.info("The following screens have been registered to the tips mod.");
+        TipsAPI.getTipsScreens().forEach(screen -> Constants.LOG.info("Screen: '{}' Enabled: '{}'", screen.getCanonicalName(), TipsAPI.canRenderOnScreen(screen)));
     }
 }
