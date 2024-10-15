@@ -88,6 +88,8 @@
   "tipsmod.tip.water_doors": "You can place a door underwater to create an air pocket.",
   "tipsmod.tip.shears_dispenser": "You can put shears in a dispenser to shear sheep.",
   "tipsmod.tip.sheared_cave_vines": "You can shear the ends of cave vines to stop them from growing.",
+  "tipsmod.tip.respawn_anchor_explodes": "Trying to set your spawn in other dimensions will end poorly.",
+  "tipsmod.tip.zombified_piglin_eggs": "Zombified piglins will go towards turtle eggs.",
 
   "gui.tips.list.title": "Tips List",
   "gui.tips.list.search": "Search",
