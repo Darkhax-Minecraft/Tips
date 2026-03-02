@@ -99,7 +99,7 @@ public class ConditionRules<T> implements Predicate<T> {
         }
 
         // Match by VanillaScreenIds class
-        else if (ResourceLocation.isValidResourceLocation(rule)) {
+        else if (rule.contains(":")) {
             final ResourceLocation targetScreen = ResourceLocation.tryParse(rule);
             if (targetScreen != null && "minecraft".equalsIgnoreCase(targetScreen.getNamespace())) {
                 return screen -> VanillaScreenIds.is(targetScreen, screen.getClass());
